@@ -1,0 +1,79 @@
+# Visual Studio specific
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+bin/
+obj/
+Build/
+
+# Rider IDE specific
+.idea/
+.idea_modules/
+*.iml
+*.ipr
+
+# ASP.NET specific
+_ReSharper*/
+*~Resharper*/
+_ReSharper.Caches/
+JetBrains.ReSharper.TaskRunner/
+
+# Packages
+*.nupkg
+*.snupkg
+Packages/
+
+# Logs and Reports
+*.log
+*.tlog
+*.dmp
+
+# Temporary Files
+~$*
+*.tmp
+*.temp
+*.DS_Store
+
+# Configuration Files
+appsettings*.json
+*.config
+*.launchSettings.json
+
+# Cache and Generated Files
+**/bin/
+**/obj/
+**/Generated_Code/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userprefs
+*.db
+
+# Environment files
+.env
+
+# Miscellaneous
+*.pidb
+*.booproj
+*.log
+*.lock.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Windows specific
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# MacOS specific
+.DS_Store
+.AppleDouble
+.LSOverride
+
