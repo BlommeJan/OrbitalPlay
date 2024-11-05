@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FitnessGameLauncher")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fed0945ac7da073fb332eaea980b661c37f30a40")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+038c1409fb0ae3b8935cb59ed94ec9d3a7cf9e43")]
 [assembly: System.Reflection.AssemblyProductAttribute("FitnessGameLauncher")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FitnessGameLauncher")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

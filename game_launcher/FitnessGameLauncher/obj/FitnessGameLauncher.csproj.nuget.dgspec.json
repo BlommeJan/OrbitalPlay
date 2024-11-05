@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\1_Business_or_apps\\1_OrbitalPlay\\OrbitalPlay\\game_launcher\\FitnessGameLauncher\\FitnessGameLauncher.csproj": {}
+    "C:\\Howest\\MCT\\SEM3\\TEAM_PROJECT\\OrbitalPlay\\game_launcher\\FitnessGameLauncher\\FitnessGameLauncher.csproj": {}
   },
   "projects": {
-    "E:\\1_Business_or_apps\\1_OrbitalPlay\\OrbitalPlay\\game_launcher\\FitnessGameLauncher\\FitnessGameLauncher.csproj": {
+    "C:\\Howest\\MCT\\SEM3\\TEAM_PROJECT\\OrbitalPlay\\game_launcher\\FitnessGameLauncher\\FitnessGameLauncher.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\1_Business_or_apps\\1_OrbitalPlay\\OrbitalPlay\\game_launcher\\FitnessGameLauncher\\FitnessGameLauncher.csproj",
+        "projectUniqueName": "C:\\Howest\\MCT\\SEM3\\TEAM_PROJECT\\OrbitalPlay\\game_launcher\\FitnessGameLauncher\\FitnessGameLauncher.csproj",
         "projectName": "FitnessGameLauncher",
-        "projectPath": "E:\\1_Business_or_apps\\1_OrbitalPlay\\OrbitalPlay\\game_launcher\\FitnessGameLauncher\\FitnessGameLauncher.csproj",
+        "projectPath": "C:\\Howest\\MCT\\SEM3\\TEAM_PROJECT\\OrbitalPlay\\game_launcher\\FitnessGameLauncher\\FitnessGameLauncher.csproj",
         "packagesPath": "C:\\Users\\janbl\\.nuget\\packages\\",
-        "outputPath": "E:\\1_Business_or_apps\\1_OrbitalPlay\\OrbitalPlay\\game_launcher\\FitnessGameLauncher\\obj\\",
+        "outputPath": "C:\\Howest\\MCT\\SEM3\\TEAM_PROJECT\\OrbitalPlay\\game_launcher\\FitnessGameLauncher\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -73,7 +74,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.402/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
