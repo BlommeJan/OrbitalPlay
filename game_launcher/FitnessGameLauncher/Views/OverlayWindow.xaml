@@ -1,0 +1,26 @@
+<Window x:Class="FitnessGameLauncher.Views.OverlayWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:FitnessGameLauncher.ViewModels"
+        Title="OverlayWindow"
+        Height="200"
+        Width="400"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Topmost="True"
+        ShowInTaskbar="False"
+        x:Name="OverlayWindowControl">
+
+    <!-- Set the DataContext to OverlayViewModel -->
+    <Window.DataContext>
+        <vm:OverlayViewModel />
+    </Window.DataContext>
+
+    <Grid Background="{Binding OverlayBackground}">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="Back to Launcher" Command="{Binding BackToLauncherCommand}" Width="150" Margin="0,0,0,10"/>
+            <TextBlock Text="Overlay Active" Foreground="White" FontSize="16" HorizontalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</Window>

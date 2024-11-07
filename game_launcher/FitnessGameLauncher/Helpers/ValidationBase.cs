@@ -85,18 +85,6 @@ namespace FitnessGameLauncher.Helpers
         }
 
         /// <summary>
-        /// Validates all properties.
-        /// </summary>
-        public void Validate()
-        {
-            var properties = GetType().GetProperties();
-            foreach (var property in properties)
-            {
-                ValidateProperty(property.Name);
-            }
-        }
-
-        /// <summary>
         /// Occurs when a property value changes.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
@@ -107,7 +95,10 @@ namespace FitnessGameLauncher.Helpers
         /// <param name="propertyName">The property name.</param>
         protected virtual void OnPropertyChanged(string propertyName)
         {
+            // Validate the property whenever it changes
             ValidateProperty(propertyName);
+
+            // Raise the PropertyChanged event
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }

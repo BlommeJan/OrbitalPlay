@@ -1,0 +1,57 @@
+<UserControl x:Class="FitnessGameLauncher.Views.EditView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:FitnessGameLauncher.ViewModels"
+             xmlns:local="clr-namespace:FitnessGameLauncher.Views"
+             x:Name="EditViewControl">
+
+    <!-- Set the DataContext to EditViewModel -->
+    <UserControl.DataContext>
+        <vm:EditViewModel />
+    </UserControl.DataContext>
+
+    <Grid Margin="10">
+        <StackPanel>
+            <TextBlock Text="Add New Game" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+
+            <!-- Game Name -->
+            <TextBlock Text="Game Name" />
+            <TextBox Text="{Binding NewGame.Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="0,5"
+                     Width="300" />
+
+            <!-- Display validation errors -->
+            <TextBlock Foreground="Red" Text="{Binding Path=(Validation.Errors)[0].ErrorContent, RelativeSource={RelativeSource PreviousData}}" />
+
+            <!-- Executable Path -->
+            <TextBlock Text="Executable Path" />
+            <StackPanel Orientation="Horizontal">
+                <TextBox Text="{Binding NewGame.ExecutablePath, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="250" Margin="0,5"/>
+                <Button Content="Browse" Command="{Binding BrowseExecutableCommand}" Margin="5,5,0,5" Width="50"/>
+            </StackPanel>
+
+            <!-- Display validation errors -->
+            <TextBlock Foreground="Red" Text="{Binding Path=(Validation.Errors)[0].ErrorContent, RelativeSource={RelativeSource PreviousData}}" />
+
+            <!-- Icon Path -->
+            <TextBlock Text="Icon Path" />
+            <StackPanel Orientation="Horizontal">
+                <TextBox Text="{Binding NewGame.IconPath, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="250" Margin="0,5"/>
+                <Button Content="Browse" Command="{Binding BrowseIconCommand}" Margin="5,5,0,5" Width="50"/>
+            </StackPanel>
+
+            <!-- Display validation errors -->
+            <TextBlock Foreground="Red" Text="{Binding Path=(Validation.Errors)[0].ErrorContent, RelativeSource={RelativeSource PreviousData}}" />
+
+            <!-- Category -->
+            <TextBlock Text="Category" />
+            <ComboBox ItemsSource="{Binding Categories}" SelectedItem="{Binding NewGame.Category, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="300" Margin="0,5"/>
+
+            <!-- Display validation errors -->
+            <TextBlock Foreground="Red" Text="{Binding Path=(Validation.Errors)[0].ErrorContent, RelativeSource={RelativeSource PreviousData}}" />
+
+            <!-- Add Game Button -->
+            <Button Content="Add Game" Command="{Binding AddGameCommand}" Width="100" Margin="0,10"
+                    IsEnabled="{Binding Path=AddGameCommand.CanExecute, RelativeSource={RelativeSource Self}}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

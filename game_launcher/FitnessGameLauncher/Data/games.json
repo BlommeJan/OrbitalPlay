@@ -1,0 +1,21 @@
+[
+    {
+      "Name": "Adventure Quest",
+      "ExecutablePath": "C:\\Games\\AdventureQuest\\AdventureQuest.exe",
+      "IconPath": "C:\\Games\\AdventureQuest\\Icons\\AdventureQuest.png",
+      "Category": "One-Ball"
+    },
+    {
+      "Name": "Mystery Maze",
+      "ExecutablePath": "C:\\Games\\MysteryMaze\\MysteryMaze.exe",
+      "IconPath": "C:\\Games\\MysteryMaze\\Icons\\MysteryMaze.png",
+      "Category": "Two-Ball"
+    },
+    {
+      "Name": "Fitness Frenzy",
+      "ExecutablePath": "C:\\Games\\FitnessFrenzy\\FitnessFrenzy.exe",
+      "IconPath": "C:\\Games\\FitnessFrenzy\\Icons\\FitnessFrenzy.png",
+      "Category": "One-Ball"
+    }
+  ]
+  
