@@ -1,5 +1,0 @@
-E:\1_Business_or_apps\1_OrbitalPlay\OrbitalPlay\game_launcher\FitnessGameLauncher\obj\Debug\net8.0-windows\FitnessGameLauncher.csproj.AssemblyReference.cache
-E:\1_Business_or_apps\1_OrbitalPlay\OrbitalPlay\game_launcher\FitnessGameLauncher\obj\Debug\net8.0-windows\MainWindow.g.cs
-E:\1_Business_or_apps\1_OrbitalPlay\OrbitalPlay\game_launcher\FitnessGameLauncher\obj\Debug\net8.0-windows\App.g.cs
-E:\1_Business_or_apps\1_OrbitalPlay\OrbitalPlay\game_launcher\FitnessGameLauncher\obj\Debug\net8.0-windows\FitnessGameLauncher_MarkupCompile.cache
-E:\1_Business_or_apps\1_OrbitalPlay\OrbitalPlay\game_launcher\FitnessGameLauncher\obj\Debug\net8.0-windows\FitnessGameLauncher_MarkupCompile.lref
