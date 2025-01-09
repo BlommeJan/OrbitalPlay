@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>OrbitalPlay - Hardware</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles/style.css" />
+</head>
+<body class="u-body">
+  <!-- ========== HEADER ========== -->
+  <header class="c-header">
+    <div class="c-header__container o-container">
+      <div class="c-header__brand-bg">
+        <a href="index.html" class="c-header__brand-link">
+          <img
+            src="assets/logo.png"
+            alt="OrbitalPlay Logo"
+            class="c-header__logo"
+          />
+        </a>
+      </div>
+
+      <nav class="c-header__nav c-nav">
+        <ul class="c-nav__list">
+          <li class="c-nav__item">
+            <a href="index.html" class="c-nav__link">
+              ABOUT
+            </a>
+          </li>
+          <li class="c-nav__item">
+            <a href="games.html" class="c-nav__link">
+              GAMES
+            </a>
+          </li>
+          <li class="c-nav__item">
+            <a
+              href="hardware.html"
+              class="c-nav__link c-nav__link--active"
+            >
+              HARDWARE
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="c-header__actions">
+        <button class="c-header__action-btn" title="Toggle Theme">☀️/🌙</button>
+        <button class="c-header__action-btn" title="Language">EN</button>
+      </div>
+    </div>
+  </header>
+  <!-- ========== /HEADER ========== -->
+
+  <main class="c-main o-container">
+    <section class="c-hardware-hero">
+      <img
+        src="assets/placeholder.png"
+        alt="OrbitalPlay Controller Showcase"
+        class="c-hardware-hero__image"
+      />
+    </section>
+
+    <section class="c-hardware-info">
+      <h2 class="c-hardware-info__title">The OrbitalPlay Controller</h2>
+      <p class="c-hardware-info__text">
+        The OrbitalPlay controller combines a sturdy wooden frame with 
+        3D-printed components to enhance its aesthetic and functionality. 
+        It features six omnidirectional ball bearings that allow the central 
+        ball to move effortlessly in all directions. A sensor beneath the 
+        ball tracks its movement, ensuring precise input. Powered by a 
+        Teensy microcontroller, the controller transmits data to your PC, 
+        making it easy to use with OrbitalPlay games.
+      </p>
+
+      <h3 class="c-hardware-info__subtitle">Recreate It Yourself</h3>
+      <p class="c-hardware-info__text">
+        Everything you need to build the OrbitalPlay controller is available 
+        on the 
+        <a href="https://github.com/YourRepoLinkHere">
+          GitHub repository
+        </a>:
+      </p>
+      <ul class="c-hardware-info__list">
+        <li class="c-hardware-info__list-item">
+          Bill of Materials (BOM): A complete list of components.
+        </li>
+        <li class="c-hardware-info__list-item">
+          3D Print Files: Ready-to-use designs for the hardware.
+        </li>
+        <li class="c-hardware-info__list-item">
+          Step-by-Step Instructions: Detailed guides to assemble 
+          and configure the controller.
+        </li>
+      </ul>
+      <p class="c-hardware-info__text">
+        With these resources, you can recreate the hardware and fully immerse 
+        yourself in the OrbitalPlay experience.
+      </p>
+    </section>
+  </main>
+
+  <footer class="c-footer">
+    <p>&copy; 2025 OrbitalPlay</p>
+  </footer>
+
+  <!-- JS -->
+  <script src="script/script.js"></script>
+</body>
+</html>

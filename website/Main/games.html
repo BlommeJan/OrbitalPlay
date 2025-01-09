@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>OrbitalPlay - Games</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles/style.css" />
+</head>
+<body class="u-body">
+  <!-- ========== HEADER ========== -->
+  <header class="c-header">
+    <div class="c-header__container o-container">
+      <div class="c-header__brand-bg">
+        <a href="index.html" class="c-header__brand-link">
+          <img
+            src="assets/logo.png"
+            alt="OrbitalPlay Logo"
+            class="c-header__logo"
+          />
+        </a>
+      </div>
+
+      <nav class="c-header__nav c-nav">
+        <ul class="c-nav__list">
+          <li class="c-nav__item">
+            <a href="index.html" class="c-nav__link">
+              ABOUT
+            </a>
+          </li>
+          <li class="c-nav__item">
+            <a href="games.html" class="c-nav__link c-nav__link--active">
+              GAMES
+            </a>
+          </li>
+          <li class="c-nav__item">
+            <a href="hardware.html" class="c-nav__link">
+              HARDWARE
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="c-header__actions">
+        <button class="c-header__action-btn" title="Toggle Theme">☀️/🌙</button>
+        <button class="c-header__action-btn" title="Language">EN</button>
+      </div>
+    </div>
+  </header>
+  <!-- ========== /HEADER ========== -->
+
+  <main class="c-main o-container">
+    <!-- Main game area (max 1280x748) -->
+    <section class="c-game-area">
+      <h1
+        id="js-selectedGameTitle"
+        class="c-game-area__title"
+      >
+        Select a game to start!
+      </h1>
+      <!-- Lip arrow at bottom center -->
+      <button
+        class="c-game-area__lip"
+        onclick="openGameDialog()"
+      >
+        ▼
+      </button>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="c-footer">
+    <p>&copy; 2025 OrbitalPlay</p>
+  </footer>
+
+  <!-- Dialog that slides up from bottom, containing game cards -->
+  <dialog
+    id="js-gameDialog"
+    class="c-dialog c-dialog--fromBottom"
+  >
+    <div class="c-dialog__content">
+      <h2 class="c-dialog__title">Select a Game</h2>
+      <p class="c-dialog__description">
+        Choose one of the games below:
+      </p>
+
+      <!-- Game cards inside the dialog -->
+      <div class="c-game-selection">
+        <div
+          class="c-game-card"
+          data-gamename="Target Shooter"
+          onclick="selectGame(event)"
+        >
+          <img
+            src="assets/art_targetshooter.png"
+            alt="Target Shooter"
+            class="c-game-card__image"
+          />
+          <h3 class="c-game-card__title">Target Shooter</h3>
+        </div>
+
+        <div
+          class="c-game-card"
+          data-gamename="Zombie vs Hero"
+          onclick="selectGame(event)"
+        >
+          <img
+            src="assets/art_villainattack.png"
+            alt="Zombie vs Hero"
+            class="c-game-card__image"
+          />
+          <h3 class="c-game-card__title">Zombie vs Hero</h3>
+        </div>
+
+        <div
+          class="c-game-card"
+          data-gamename="Puzzle"
+          onclick="selectGame(event)"
+        >
+          <img
+            src="assets/art_puzzle.png"
+            alt="Puzzle"
+            class="c-game-card__image"
+          />
+          <h3 class="c-game-card__title">Puzzle</h3>
+        </div>
+
+        <div
+          class="c-game-card"
+          data-gamename="Coming Soon"
+          onclick="selectGame(event)"
+        >
+          <img
+            src="assets/placeholder.png"
+            alt="Coming Soon"
+            class="c-game-card__image"
+          />
+          <h3 class="c-game-card__title">Coming Soon</h3>
+        </div>
+      </div>
+      <!-- /c-game-selection -->
+
+      <button
+        class="c-dialog__button"
+        onclick="closeGameDialog()"
+      >
+        Close
+      </button>
+    </div>
+  </dialog>
+
+  <!-- JS -->
+  <script src="script/script.js"></script>
+</body>
+</html>
