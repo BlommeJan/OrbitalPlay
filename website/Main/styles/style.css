@@ -2,350 +2,573 @@
   1. SETTINGS (Variables, Fonts, Breakpoints)
 ****************************************************************************/
 :root {
-    /* Base font size: 10px => 1rem = 10px. Adjust as needed. */
-    font-size: 62.5%;
-  
-    /* Colors */
-    --color-background: #ffffff;
-    --color-text: #000000;
-    --color-accent1: #12A6B7;
-    --color-accent2: #D9D9D9;
-  
-    /* Spacing scale (example) */
-    --space-xxs: 0.4rem;  /* 4px  */
-    --space-xs:  0.8rem;  /* 8px  */
-    --space-s:   1.2rem;  /* 12px */
-    --space-m:   1.6rem;  /* 16px */
-    --space-l:   2.4rem;  /* 24px */
-    --space-xl:  3.2rem;  /* 32px */
-  
-    /* Font Family */
-    --font-family-base: 'Albert Sans', sans-serif;
-  }
-  
-  /****************************************************************************
-    2. TOOLS (Mixins, Functions) 
-  ****************************************************************************/
-  /* (Place SASS mixins or advanced CSS logic here if needed) */
-  
-  /****************************************************************************
-    3. GENERIC (Resets, Base)
-  ****************************************************************************/
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
-  
-  html, body {
-    margin: 0;
-    padding: 0;
-  }
-  
-  body.u-body {
-    background-color: var(--color-background);
-    color: var(--color-text);
-    font-family: var(--font-family-base);
-    line-height: 1.6;
-  }
-  
-  /****************************************************************************
-    4. ELEMENTS (Unclassed HTML elements)
-  ****************************************************************************/
-  h1, h2, h3, h4, h5, h6,
-  p, ul, li,
-  button, input, select, textarea {
-    margin: 0;
-    padding: 0;
-    font-family: var(--font-family-base);
-  }
-  
-  /****************************************************************************
-    5. OBJECTS (Structural patterns)
-  ****************************************************************************/
-  /* .o-container: a common max-width container */
-  .o-container {
-    max-width: 120rem; /* ~1200px if 1rem=10px */
-    margin: 0 auto;
-    padding: 0 var(--space-m);
-  }
-  
-  /****************************************************************************
-    6. COMPONENTS (BEM)
-  ****************************************************************************/
-  
-  /* ========== HEADER COMPONENT ========== */
-  .c-header {
-    background-color: var(--color-accent1);
-    padding: var(--space-s) 0;
-    color: #ffffff;
-    position: relative;
-  }
-  
-  .c-header__container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  /* White rectangle behind the logo with rounded corners */
-  .c-header__brand-bg {
-    background-color: #ffffff;
-    border-radius: 1rem;
-    padding: var(--space-xxs) var(--space-xs);
-    display: inline-flex;
-    align-items: center;
-  }
-  
-  .c-header__brand-link {
-    display: inline-flex;
-    align-items: center;
-    text-decoration: none;
-  }
-  
-  .c-header__logo {
-    height: 5rem; /* 50px if 1rem=10px */
-    width: auto;
-  }
-  
-  .c-header__nav .c-nav__list {
-    display: flex;
-    list-style: none;
-    gap: var(--space-m);
-  }
-  
-  .c-nav__link {
-    text-decoration: none;
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 1.6rem;
-  }
-  
-  .c-nav__link--active {
-    text-decoration: underline;
-  }
-  
-  .c-header__actions {
-    display: flex;
-    gap: var(--space-s);
-  }
-  
-  .c-header__action-btn {
-    background: none;
-    border: none;
-    color: #ffffff;
-    font-size: 1.6rem;
-    cursor: pointer;
-  }
-  
-  /* ========== MAIN COMPONENT ========== */
-  .c-main {
-    margin-top: var(--space-l);
-    margin-bottom: var(--space-l);
-  }
-  
-  /* ========== HERO COMPONENT (index/home) ========== */
-  .c-hero {
-    margin-bottom: var(--space-l);
-  }
-  
-  .c-hero__image {
-    width: 100%;
-    border-radius: 0.6rem;
-  }
-  
-  /* ========== ABOUT COMPONENT (index/home) ========== */
-  .c-about {
-    margin-bottom: var(--space-l);
-  }
-  
-  .c-about__title {
-    font-size: 2.4rem;
-    margin-bottom: var(--space-s);
-  }
-  
-  .c-about__paragraph {
-    font-size: 1.6rem;
-    line-height: 1.6;
-  }
-  
-  /* ========== GAME AREA COMPONENT (games.html) ========== */
-  /* A rectangle that can scale up to 1280x748 => 128rem x 74.8rem. */
-  .c-game-area {
-    max-width: 128rem;   /* 1280px if 1rem=10px */
-    max-height: 74.8rem; /* 748px if 1rem=10px */
-    width: 100%;
-    height: 74.8rem;
-    background-color: var(--color-accent2);
-    border-radius: 1rem;
-    position: relative; /* For the lip arrow to anchor at bottom */
-    overflow: hidden;
-    padding: var(--space-l);
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-  
-  .c-game-area__title {
-    font-size: 2.4rem;
-    font-weight: 600;
-    line-height: 1.4;
-  }
-  
-  /* The 'lip' arrow button at bottom center of the .c-game-area */
-  .c-game-area__lip {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%) translateY(50%);
-    background: var(--color-accent1);
-    color: #fff;
-    border: none;
-    font-size: 2rem;
-    border-radius: 50%;
-    width: 4rem;
-    height: 4rem;
-    cursor: pointer;
-    box-shadow: 0 0.3rem 0.6rem rgba(0,0,0,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  /* ========== DIALOG COMPONENT (games.html) ========== */
-  .c-dialog {
-    border: none;
-    border-radius: 0.8rem;
-    padding: var(--space-m);
-    max-width: 90%;
-    width: 50rem; /* ~500px max */
-  }
-  
-  /* This modifier helps anchor the dialog near the bottom. 
-     The actual "slide" effect requires showModal() + some CSS transitions/polish. */
-  .c-dialog--fromBottom::backdrop {
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-  
-  .c-dialog--fromBottom {
-    position: fixed;
-    bottom: 0;
-    margin: auto;
-  }
-  
-  .c-dialog__content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .c-dialog__title {
-    font-size: 2rem;
-    margin-bottom: var(--space-s);
-  }
-  
-  .c-dialog__description {
-    font-size: 1.6rem;
-    margin-bottom: var(--space-s);
-    line-height: 1.4;
-  }
-  
-  .c-dialog__button {
-    margin-top: var(--space-s);
-    background-color: var(--color-accent1);
-    color: #ffffff;
-    border: none;
-    padding: var(--space-xs) var(--space-s);
-    border-radius: 0.6rem;
-    cursor: pointer;
-  }
-  
-  /* ========== GAME SELECTION (inside dialog) ========== */
-  .c-game-selection {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-l);
-    justify-content: center;
-    margin-top: var(--space-s);
-  }
-  
-  .c-game-card {
-    width: 18rem; /* 180px if 1rem=10px */
-    background-color: #fff;
-    border: 0.2rem solid var(--color-accent1);
-    border-radius: 0.8rem;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-  }
-  
-  .c-game-card:hover {
-    transform: scale(1.05);
-  }
-  
-  .c-game-card__image {
-    width: 100%;
-    border-radius: 0.8rem 0.8rem 0 0;
-  }
-  
-  .c-game-card__title {
-    font-size: 1.6rem;
-    margin: var(--space-xs) 0;
-  }
-  
-  /* ========== HARDWARE PAGE COMPONENTS ========== */
-  .c-hardware-hero {
-    margin-bottom: var(--space-l);
-  }
-  
-  .c-hardware-hero__image {
-    width: 100%;
-    border-radius: 0.6rem;
-  }
-  
-  .c-hardware-info {
-    margin-bottom: var(--space-l);
-  }
-  
-  .c-hardware-info__title {
-    font-size: 2.4rem;
-    margin-bottom: var(--space-s);
-  }
-  
-  .c-hardware-info__subtitle {
-    font-size: 2rem;
-    margin: var(--space-m) 0 var(--space-xs);
-  }
-  
-  .c-hardware-info__text {
-    font-size: 1.6rem;
-    line-height: 1.6;
-    margin-bottom: var(--space-s);
-  }
-  
-  .c-hardware-info__list {
-    list-style: disc inside;
-    margin-bottom: var(--space-s);
-  }
-  
-  .c-hardware-info__list-item {
-    font-size: 1.6rem;
-    margin-bottom: var(--space-xs);
-  }
-  
-  /* ========== FOOTER COMPONENT ========== */
-  .c-footer {
-    background-color: var(--color-accent2);
-    text-align: center;
-    padding: var(--space-s) 0;
-  }
-  
-  /****************************************************************************
-    7. UTILITIES
-  ****************************************************************************/
-  .u-text-center {
-    text-align: center;
-  }
-  
+  /* Base font size: 10px => 1rem = 10px. Adjust as needed. */
+  font-size: 62.5%;
+
+  /* Colors */
+  --color-background: #ffffff;
+  --color-text: #000000;
+  --color-accent1: #12A6B7;
+  --color-accent2: #D9D9D9;
+
+  /* Spacing scale (example) */
+  --space-xxs: 0.4rem;  /* 4px  */
+  --space-xs:  0.8rem;  /* 8px  */
+  --space-s:   1.2rem;  /* 12px */
+  --space-m:   1.6rem;  /* 16px */
+  --space-l:   2.4rem;  /* 24px */
+  --space-xl:  3.2rem;  /* 32px */
+
+  /* Font Family */
+  --font-family-base: 'Albert Sans', sans-serif;
+}
+
+/****************************************************************************
+  2. TOOLS (Mixins, Functions)
+****************************************************************************/
+/* (Place any SASS mixins or advanced CSS logic here if needed) */
+
+/****************************************************************************
+  3. GENERIC (Resets, Base)
+****************************************************************************/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body.u-body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-family-base);
+  line-height: 1.6;
+  height: 100vh;
+}
+
+/****************************************************************************
+  4. ELEMENTS (Unclassed HTML elements)
+****************************************************************************/
+h1, h2, h3, h4, h5, h6,
+p, ul, li,
+button, input, select, textarea {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-base);
+}
+
+/****************************************************************************
+  5. OBJECTS (Structural patterns)
+****************************************************************************/
+/* .o-container: a common max-width container */
+.o-container {
+  max-width: 120rem; /* ~1200px if 1rem=10px */
+  margin: 0 auto;
+  padding: 0 var(--space-m);
+}
+
+/****************************************************************************
+  6. COMPONENTS (BEM)
+****************************************************************************/
+
+/* ========== HEADER COMPONENT ========== */
+.c-header {
+  background-color: var(--color-accent1);
+  padding: var(--space-s) 0;
+  color: #ffffff;
+  position: relative;
+}
+
+.c-header__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* White rectangle behind the logo with rounded corners */
+.c-header__brand-bg {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  padding: var(--space-xxs) var(--space-xs);
+  display: inline-flex;
+  align-items: center;
+}
+
+.c-header__brand-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.c-header__logo {
+  height: 5rem; /* 50px if 1rem=10px */
+  width: auto;
+}
+
+.c-header__nav .c-nav__list {
+  display: flex;
+  list-style: none;
+  gap: var(--space-m);
+}
+
+.c-nav__link {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+
+.c-nav__link--active {
+  text-decoration: underline;
+}
+
+.c-header__actions {
+  display: flex;
+  gap: var(--space-s);
+}
+
+.c-header__action-btn {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+/* ========== MAIN COMPONENT ========== */
+.c-main {
+  margin-top: var(--space-l);
+  margin-bottom: var(--space-l);
+}
+
+/* ========== HERO COMPONENT (index/home) ========== */
+.c-hero {
+  margin-bottom: var(--space-l);
+}
+
+.c-hero__image {
+  width: 100%;
+  border-radius: 0.6rem;
+}
+
+/* ========== ABOUT COMPONENT (index/home) ========== */
+.c-about {
+  margin-bottom: var(--space-l);
+}
+
+/* Make the .c-about a row layout (image + text side by side) */
+.c-about--row {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-l);
+  align-items: center;
+}
+
+/* Optional image styling */
+.c-about__image {
+  width: 40%;
+  height: auto;
+  border-radius: 0.6rem;
+}
+
+.c-about__content {
+  flex: 1;
+}
+
+.c-about__title {
+  font-size: 2.4rem;
+  margin-bottom: var(--space-s);
+}
+
+.c-about__paragraph {
+  font-size: 1.6rem;
+  line-height: 1.6;
+}
+
+/* ========== GAME AREA COMPONENT (games.html) ========== */
+/* A rectangle that can scale up to 1280x748 => 128rem x 74.8rem. */
+.c-game-area {
+  max-width: 128rem;   /* 1280px if 1rem=10px */
+  height: 74.8rem;     /* 748px if 1rem=10px */
+  width: 100%;
+  background-color: var(--color-accent2);
+  border-radius: 1rem;
+  position: relative; /* For the lip arrow to anchor at bottom */
+  overflow: hidden;
+  padding: var(--space-l);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.c-game-area__title {
+  font-size: 2.4rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* The 'lip' arrow button at bottom center of the .c-game-area */
+.c-game-area__lip {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(50%);
+  background: var(--color-accent1);
+  color: #fff;
+  border: none;
+  font-size: 2rem;
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+  cursor: pointer;
+  box-shadow: 0 0.3rem 0.6rem rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ========== DIALOG COMPONENT (games.html) ========== */
+.c-dialog {
+  border: none;
+  border-radius: 0.8rem;
+  padding: var(--space-m);
+  max-width: 90%;
+  width: 50rem; /* ~500px max */
+}
+
+.c-dialog--fromBottom::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.c-dialog--fromBottom {
+  position: fixed;
+  bottom: 0;
+  margin: auto;
+}
+
+.c-dialog__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.c-dialog__title {
+  font-size: 2rem;
+  margin-bottom: var(--space-s);
+}
+
+.c-dialog__description {
+  font-size: 1.6rem;
+  margin-bottom: var(--space-s);
+  line-height: 1.4;
+}
+
+.c-dialog__button {
+  margin-top: var(--space-s);
+  background-color: var(--color-accent1);
+  color: #ffffff;
+  border: none;
+  padding: var(--space-xs) var(--space-s);
+  border-radius: 0.6rem;
+  cursor: pointer;
+}
+
+/* ========== GAME SELECTION (inside dialog) ========== */
+.c-game-selection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-l);
+  justify-content: center;
+  margin-top: var(--space-s);
+}
+
+.c-game-card {
+  width: 18rem; /* 180px if 1rem=10px */
+  background-color: #fff;
+  border: 0.2rem solid var(--color-accent1);
+  border-radius: 0.8rem;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.c-game-card:hover {
+  transform: scale(1.05);
+}
+
+.c-game-card__image {
+  width: 100%;
+  border-radius: 0.8rem 0.8rem 0 0;
+}
+
+.c-game-card__title {
+  font-size: 1.6rem;
+  margin: var(--space-xs) 0;
+}
+
+/* ========== HARDWARE PAGE COMPONENTS ========== */
+.c-hardware-hero {
+  margin-bottom: var(--space-l);
+}
+
+.c-hardware-hero__image {
+  width: 100%;
+  border-radius: 0.6rem;
+}
+
+/* The main hardware info container */
+.c-hardware-info {
+  margin-bottom: var(--space-l);
+}
+
+/* Display image + text side by side */
+.c-hardware-info--row {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-l);
+  align-items: center;
+}
+
+/* For the hardware image in row layout */
+.c-hardware-info__image {
+  width: 40%;
+  height: auto;
+  border-radius: 0.6rem;
+}
+
+.c-hardware-info__content {
+  flex: 1;
+}
+
+.c-hardware-info__title {
+  font-size: 2.4rem;
+  margin-bottom: var(--space-s);
+}
+
+.c-hardware-info__subtitle {
+  font-size: 2rem;
+  margin: var(--space-m) 0 var(--space-xs);
+}
+
+.c-hardware-info__text {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  margin-bottom: var(--space-s);
+}
+
+.c-hardware-info__list {
+  list-style: disc inside;
+  margin-bottom: var(--space-s);
+}
+
+.c-hardware-info__list-item {
+  font-size: 1.6rem;
+  margin-bottom: var(--space-xs);
+}
+
+/* ========== FOOTER COMPONENT ========== */
+.c-footer {
+  background-color: var(--color-accent2);
+  text-align: center;
+  padding: var(--space-s) 0;
+}
+
+/****************************************************************************
+  7. UTILITIES
+****************************************************************************/
+.u-text-center {
+  text-align: center;
+}
+
+/* ========================== ADDED AT BOTTOM ========================== */
+
+/* Displays top-right overlays like HP, time, etc. */
+.c-game-hud {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.6rem;
+  color: #000; /* Adjust if your background is dark/light */
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 0.8rem 1.2rem;
+  border-radius: 0.4rem;
+  display: flex;
+  gap: 1.6rem;
+}
+
+/* Pause menu overlay */
+.c-pause-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: none; /* show when paused */
+  justify-content: center;
+  align-items: center;
+}
+
+.c-pause-menu {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 0.8rem;
+  text-align: center;
+}
+
+/* ==========================================
+   Additional styles for canvas-based games
+   ========================================== */
+
+/* For the top-right Score/Time box */
+.c-game-hud {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.8rem 1.2rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 1.6rem;
+  border-radius: 0.6rem;
+  display: none; /* shown only in active game */
+  z-index: 999;
+}
+
+/* Pause overlay covering the entire .c-game-area */
+.c-pause-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: none; /* shown when paused */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.c-pause-overlay .c-pause-menu {
+  background: #333;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 0.8rem;
+  text-align: center;
+}
+
+.c-pause-overlay .c-pause-menu button {
+  margin: 0.5rem;
+}
+
+/* Simple start menu overlay for each game (choose theme, Start, etc.) */
+.c-game-start-menu {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.7);
+  display: none; /* shown by default or on game init? */
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+}
+
+.c-game-start-menu .c-game-start-menu__box {
+  background: #444;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: center;
+}
+
+.c-game-start-menu .c-game-start-menu__box select {
+  margin: 1rem 0;
+  font-size: 1rem;
+  padding: 0.4rem;
+}
+
+.c-game-start-menu .c-game-start-menu__box button {
+  margin: 0.5rem;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+/* --------------------------------------
+   Ensure .c-game-area can fill space
+--------------------------------------- */
+.c-game-area {
+  position: relative;
+  width: 100%;
+  max-width: 128rem; /* or remove if you want truly fluid */
+  height: 74.8rem;   /* ~748px if you want a set height, or remove to auto-size */
+  background-color: var(--color-accent2);
+  border-radius: 1rem;
+  overflow: hidden;
+  padding: var(--space-l);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Make #js-gameContainer fill the c-game-area leftover space */
+#js-gameContainer {
+  flex: 1; 
+  position: relative;
+  width: 100%; 
+  height: 100%;
+}
+
+/* HUD at top-right */
+.c-game-hud {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.8rem 1.2rem;
+  background-color: rgba(0,0,0,0.5);
+  color: #fff;
+  border-radius: 0.5rem;
+  display: none; /* shown in game */
+  z-index: 10;
+  font-size: 1.6rem;
+}
+
+/* Pause overlay covers entire container */
+.c-pause-overlay {
+  position: absolute;
+  top: 0; left:0; bottom:0; right:0;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.c-pause-menu {
+  background: #333;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 0.8rem;
+  text-align: center;
+}
+
+/* Start menu overlay for each game */
+.c-game-start-menu {
+  position: absolute;
+  top: 0; left:0; bottom:0; right:0;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+}
+.c-game-start-menu__box {
+  background: #444;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: center;
+}
