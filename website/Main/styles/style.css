@@ -377,6 +377,9 @@ button, input, select, textarea {
   background-color: var(--color-accent2);
   text-align: center;
   padding: var(--space-s) 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 /****************************************************************************
@@ -571,4 +574,32 @@ button, input, select, textarea {
   padding: 2rem;
   border-radius: 1rem;
   text-align: center;
+}
+
+/* -----------------------------------
+cursor: pointer in games
+--------------------------------------*/
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-circus {
+  cursor: url('../assets/targetshooter/cursor_circus.png'), auto;
+}
+
+.cursor-cowboy {
+  cursor: url('../assets/targetshooter/cursor_cowboy.png'), auto;
+}
+
+.cursor-cyber {
+  cursor: url('../assets/targetshooter/cursor_cyber.png'), auto;
+}
+
+.cursor-space {
+  cursor: url('../assets/targetshooter/cursor_space.png'), auto;
+}
+
+.cursor-zombie {
+  cursor: url('../assets/targetshooter/cursor_zombie.png'), auto;
 }

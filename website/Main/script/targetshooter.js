@@ -45,7 +45,7 @@ function initTargetShooter() {
   
     document.addEventListener('keydown', tsOnKeyDown);
   }
-  
+
   /* Game state */
   let tsCanvas, tsCtx;
   let tsWidth, tsHeight;
@@ -53,7 +53,7 @@ function initTargetShooter() {
   let tsIsPaused    = false;
   let tsGameOver    = false;
   let tsScore       = 0;
-  let tsTime        = 15;
+  let tsTime        = 30;
   let tsSpawnTimer  = 0;
   const tsSpawnInterval = 1.2; // spawn every 1.2s
   let tsTheme = 'circus';
@@ -61,7 +61,6 @@ function initTargetShooter() {
   let tsBgImage       = new Image();
   let tsGoodTargetImg = new Image();
   let tsBadTargetImg  = new Image();
-  let tsCursorUrl     = ''; // for custom theme cursor
   const tsHitSound      = new Audio('assets/targetshooter/hit.wav');
   const tsGameOverSound = new Audio('assets/targetshooter/gameover.wav');
   
@@ -79,7 +78,7 @@ function initTargetShooter() {
     tsIsPaused   = false;
     tsGameOver   = false;
     tsScore      = 0;
-    tsTime       = 15;
+    tsTime       = 30;
     tsSpawnTimer = 0;
     tsTargets    = [];
   
@@ -208,7 +207,7 @@ function initTargetShooter() {
         // hit
         if (t.isGood) {
           tsScore++;
-          tsTime += 1;
+          tsTime += 3;
           tsHitSound.currentTime = 0;
           tsHitSound.play();
         } else {
