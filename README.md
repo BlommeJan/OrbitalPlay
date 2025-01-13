@@ -1,6 +1,6 @@
 # OrbitalPlay
 
-![OrbitalPlay Logo](https://orbitalplay.com/images/logo.png)
+![OrbitalPlay Logo](https://orbitalplay.com/assets/logo.png)
 
 OrbitalPlay is a fitness-inspired gaming solution featuring custom-made JavaScript games and plug-and-play Arduino-based controller hardware. Developed by Jan Blomme and Guus Loccufier, it offers a seamless gaming experience with real-time controller feedback and customizable in-game overlays. This project includes everything needed to recreate the system.
 
