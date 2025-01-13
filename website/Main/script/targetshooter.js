@@ -207,11 +207,11 @@ function initTargetShooter() {
         // hit
         if (t.isGood) {
           tsScore++;
-          tsTime += 3;
+          tsTime += 2;
           tsHitSound.currentTime = 0;
           tsHitSound.play();
         } else {
-          tsTime -= 3;
+          tsTime -= 5;
           if (tsTime<0) tsTime=0;
         }
         tsTargets.splice(i,1);
