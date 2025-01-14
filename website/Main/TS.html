@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Aim Trainer</title>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* CSS Styles */
+
+    /* Body with a light, subtle gradient */
+    body {
+      font-family: 'Albert Sans', sans-serif;
+      background: linear-gradient(135deg, #f0f0f0 0%, #e6ebf0 100%);
+      margin: 0;
+      padding: 0;
+      overflow: hidden; /* Prevent scrollbar when targets move */
+    }
+
+    .game-container {
+      width: 100%; /* Full width */
+      height: 100vh; /* Full viewport height */
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle drop shadow */
+    }
+
+    .main-content {
+      display: flex;
+      flex: 1;
+      padding: 20px;
+      box-sizing: border-box;
+      gap: 20px;
+    }
+
+    /* Left Column: High Scores */
+    .high-scores-container {
+      flex: 1;
+      background-color: #fafafa;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .high-scores-container h2 {
+      margin-top: 0;
+      text-align: center;
+      color: #333;
+    }
+
+    #high-score-list {
+      list-style: decimal inside;
+      padding: 0;
+      margin: 0;
+      font-size: 1.1em;
+      color: #555;
+    }
+
+    /* Center Column: Game Area */
+    .game-area-container {
+      flex: 5; /* Maintained from original */
+      position: relative;
+      background-color: #e0e0e0;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: url('images/cursor.png') 16 16, auto; /* Custom cursor only on game area */
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Start Button */
+    #start-btn {
+      padding: 20px 40px;
+      font-size: 2em;
+      cursor: pointer;
+      position: absolute;
+      display: block;
+      z-index: 1001;
+      background-color: #3f51b5;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    #start-btn:hover {
+      background-color: #303f9f;
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Start Countdown Overlay */
+    #start-countdown {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 5em;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 20px 40px;
+      border-radius: 10px;
+      display: none;
+      z-index: 1002;
+    }
+
+    /* Game Area */
+    #game-area {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .target {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      transition: opacity 0.5s;
+      background-size: cover;
+      background-position: center;
+    }   
+
+    .target:active {
+      transform: scale(0.9);
+    }
+
+    /* Good Target fade-out effect */
+    .fade-out {
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
+    /* Right Column: Score and Time */
+    .score-time-container {
+      flex: 1;
+      background-color: #fafafa;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .score-time-container div {
+      font-size: 1.5em;
+      color: #333;
+    }
+
+    /* Horizontal rule and Back to games */
+    .score-time-container hr {
+      width: 80%;
+      border: 1px solid #ccc;
+    }
+
+    .back-to-games {
+      margin-top: 10px;
+      font-size: 1.2em;
+      color: #3f51b5;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    /* Pause Menu */
+    #pause-menu {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3em;
+      z-index: 1003;
+      cursor: inherit;
+      display: none; /* Hidden by default */
+    }
+  </style>
+</head>
+<body>
+  <div class="game-container">
+    <div class="main-content">
+      <!-- Left Column: High Scores -->
+      <div class="high-scores-container">
+        <h2>High Scores</h2>
+        <ol id="high-score-list"></ol>
+      </div>
+
+      <!-- Center Column: Game Area -->
+      <div class="game-area-container">
+        <!-- Start Button -->
+        <button id="start-btn">Start</button>
+        
+        <!-- Countdown Overlay -->
+        <div id="start-countdown">3</div>
+        
+        <!-- Actual Game Area -->
+        <div id="game-area"></div>
+        
+        <!-- Pause Menu -->
+        <div id="pause-menu">Paused</div>
+      </div>
+
+      <!-- Right Column: Score and Time -->
+      <div class="score-time-container">
+        <div>Score: <span id="score">0</span></div>
+        <div>Time: <span id="time">30</span>s</div>
+        <hr>
+        <div class="back-to-games">Back to games</div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    // JavaScript Code
+
+    // === Image Configuration Variables ===
+
+    // Paths to your images
+    const backgroundImage = 'images/background.png'; // Path to background image
+    const goodTargetImage = 'images/good-target.png'; // Path to good target image
+    const badTargetImage = 'images/bad-target.png'; // Path to bad target image
+    const cursorImage = 'images/cursor.png'; // Path to custom cursor image
+
+    // Apply the background image to the game area
+    const gameAreaElement = document.getElementById('game-area');
+    gameAreaElement.style.backgroundImage = `url('${backgroundImage}')`;
+
+    // Apply the custom cursor to the game-area-container only
+    const gameAreaContainer = document.querySelector('.game-area-container');
+    gameAreaContainer.style.cursor = `url('${cursorImage}') 16 16, auto`;
+
+    // References to DOM elements
+    const startBtn = document.getElementById('start-btn');
+    const startCountdown = document.getElementById('start-countdown');
+    const scoreEl = document.getElementById('score');
+    const timeEl = document.getElementById('time');
+    const highScoreList = document.getElementById('high-score-list');
+    const pauseMenu = document.getElementById('pause-menu');
+    const backToGames = document.querySelector('.back-to-games');
+
+    let score = 0;
+    let time = 30;
+    let gameInterval;
+    let isPaused = false;
+
+    // Array to track all active timeouts for bad targets
+    let badTargetTimeouts = [];
+
+    // Track active targets
+    let activeTargets = 0;
+
+    // Start Countdown Variables
+    let countdownValue = 3;
+    let countdownInterval;
+
+    // Event Listeners
+    startBtn.addEventListener('click', startGameWithCountdown);
+    document.addEventListener('keydown', handleKeyDown);
+    backToGames.addEventListener('click', () => {
+      window.location.href = 'games.html'; // Update with actual games page URL
+    });
+
+    // Initialize Game
+    function initializeGame() {
+      // Display High Scores on Load
+      displayHighScores();
+    }
+
+    // Start Game with Countdown
+    function startGameWithCountdown() {
+      startBtn.style.display = 'none'; // Hide start button
+      startCountdown.style.display = 'flex';
+      countdownValue = 3;
+      startCountdown.textContent = countdownValue;
+      countdownInterval = setInterval(() => {
+        countdownValue--;
+        if (countdownValue > 0) {
+          startCountdown.textContent = countdownValue;
+        } else {
+          clearInterval(countdownInterval);
+          startCountdown.style.display = 'none';
+          startGame();
+        }
+      }, 1000);
+    }
+
+    // Start the Game
+    function startGame() {
+      score = 0;
+      time = 30;
+      scoreEl.textContent = score;
+      timeEl.textContent = time;
+      activeTargets = 0;
+
+      isPaused = false;
+      pauseMenu.style.display = 'none';
+
+      // Clear any existing timeouts and targets
+      clearAllTimeouts();
+      removeAllTargets();
+
+      // Start the game timer
+      gameInterval = setInterval(updateTimer, 1000);
+
+      // Spawn the first target
+      spawnTarget();
+    }
+
+    // Update Timer Every Second
+    function updateTimer() {
+      if (isPaused) return;
+      time--;
+      if (time < 0) time = 0; // Prevent negative time
+      timeEl.textContent = time;
+
+      if (time <= 0) {
+        endGame();
+      }
+    }
+
+    // End the Game
+    function endGame() {
+      clearInterval(gameInterval);
+      // Clear all active timeouts for bad targets
+      clearAllTimeouts();
+      removeAllTargets();
+      isPaused = false;
+      alert(`Game Over! Your score: ${score}`);
+      updateHighScores();
+      startBtn.style.display = 'block'; // Show start button again
+    }
+
+    // Spawn a Target
+    function spawnTarget() {
+      if (isPaused) return;
+      if (activeTargets >= 1) return; // Limit to one target at a time
+
+      const target = document.createElement('div');
+      target.classList.add('target');
+
+      // Determine target type: good or bad
+      const isGood = Math.random() < 0.7; // 70% chance to be good
+      if (isGood) {
+        target.classList.add('good');
+        target.style.backgroundImage = `url('${goodTargetImage}')`; // Set good target image
+      } else {
+        target.classList.add('bad');
+        target.style.backgroundImage = `url('${badTargetImage}')`; // Set bad target image
+      }
+
+      const size = 100; // Target size in px
+      const maxX = gameAreaElement.clientWidth - size;
+      const maxY = gameAreaElement.clientHeight - size;
+
+      const x = Math.floor(Math.random() * maxX);
+      const y = Math.floor(Math.random() * maxY);
+
+      target.style.left = `${x}px`;
+      target.style.top = `${y}px`;
+
+      target.addEventListener('click', hitTarget);
+
+      gameAreaElement.appendChild(target);
+      activeTargets++;
+
+      if (!isGood) {
+        // Bad targets disappear after 1 second if not clicked
+        const timeout = setTimeout(() => {
+          target.remove();
+          activeTargets--;
+          badTargetTimeouts = badTargetTimeouts.filter(t => t !== timeout);
+          if (time > 0 && !isPaused) spawnTarget();
+        }, 1000);
+        badTargetTimeouts.push(timeout);
+      }
+    }
+
+    // Handle Target Clicks
+    function hitTarget(e) {
+      if (isPaused) return; // Do nothing if paused
+
+      const target = e.target;
+      if (target.classList.contains('good')) {
+        score++;
+        scoreEl.textContent = score;
+        // Gain 2 seconds
+        time += 2;
+        timeEl.textContent = time;
+
+        // Animate the target fading out
+        target.classList.add('fade-out');
+
+        // Remove the target after fade-out animation
+        target.addEventListener('transitionend', () => {
+          target.remove();
+          activeTargets--;
+          if (time > 0 && !isPaused) spawnTarget();
+        });
+      } else if (target.classList.contains('bad')) {
+        // Lose 5 seconds
+        time -= 5;
+        if (time < 0) time = 0;
+        timeEl.textContent = time;
+        // Optionally, you can decrease the score or add other penalties
+
+        // Remove the bad target immediately
+        target.remove();
+        activeTargets--;
+
+        // Clear all timeouts for bad targets
+        clearAllBadTargetTimeouts();
+
+        if (time > 0 && !isPaused) spawnTarget();
+
+        // Check if time has reached zero after losing time
+        if (time <= 0) {
+          endGame();
+        }
+      }
+    }
+
+    // High Scores Functions
+
+    function updateHighScores() {
+      let highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+      highScores.push(score);
+      highScores.sort((a, b) => b - a);
+      highScores = highScores.slice(0, 5); // Keep top 5
+      localStorage.setItem('highScores', JSON.stringify(highScores));
+      displayHighScores(highScores);
+    }
+
+    function displayHighScores(highScores = null) {
+      if (!highScores) {
+        highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+      }
+      highScoreList.innerHTML = highScores.map(score => `<li>${score}</li>`).join('');
+    }
+
+    // Initialize high scores on page load
+    window.onload = initializeGame;
+
+    // Pause Menu Functions
+
+    function handleKeyDown(e) {
+      if (e.key === 'Escape') {
+        togglePause();
+      }
+    }
+
+    function togglePause() {
+      // Prevent pausing before the game starts
+      if (time === 30 && score === 0 && isPaused === false) return;
+
+      isPaused = !isPaused;
+
+      if (isPaused) {
+        pauseGame();
+      } else {
+        resumeGame();
+      }
+    }
+
+    function pauseGame() {
+      pauseMenu.style.display = 'flex';
+      clearInterval(gameInterval);
+      // Clear all active timeouts for bad targets
+      badTargetTimeouts.forEach(timeout => clearTimeout(timeout));
+      badTargetTimeouts = [];
+    }
+
+    function resumeGame() {
+      pauseMenu.style.display = 'none';
+      gameInterval = setInterval(updateTimer, 1000);
+      // Resume spawning targets only if there are no active targets
+      if (activeTargets < 1 && time > 0) {
+        spawnTarget();
+      }
+    }
+
+    // Clear all timeouts for bad targets
+    function clearAllBadTargetTimeouts() {
+      badTargetTimeouts.forEach(timeout => clearTimeout(timeout));
+      badTargetTimeouts = [];
+    }
+
+    // Clear all timeouts
+    function clearAllTimeouts() {
+      clearInterval(gameInterval);
+      clearAllBadTargetTimeouts();
+    }
+
+    // Remove all targets from the game area
+    function removeAllTargets() {
+      const existingTargets = document.querySelectorAll('.target');
+      existingTargets.forEach(target => target.remove());
+      activeTargets = 0;
+    }
+  </script>
+</body>
+</html>
