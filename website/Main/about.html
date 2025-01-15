@@ -2,7 +2,7 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8" />
-  <title>OrbitalPlay - Hardware</title>
+  <title>OrbitalPlay - Over Ons</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -31,7 +31,7 @@
       <nav class="c-header__nav c-nav">
         <ul class="c-nav__list">
           <li class="c-nav__item">
-            <a href="hardware.html" class="c-nav__link c-nav__link--active">
+            <a href="hardware.html" class="c-nav__link">
               HARDWARE
             </a>
           </li>
@@ -41,111 +41,71 @@
             </a>
           </li>
           <li class="c-nav__item">
-            <a href="about.html" class="c-nav__link">
-              ABOUT
+            <a href="about.html" class="c-nav__link c-nav__link--active">
+              OVER ONS
             </a>
           </li>
         </ul>
       </nav>
-
     </div>
   </header>
-  <!-- ========== /HEADER ========== -->
 
   <main class="c-main o-container">
-    <!-- Hardware showcase section -->
-    <section class="c-hardware-showcase">
-      <div class="c-hardware-showcase__content">
-        <h1 class="c-hardware-showcase__title">De OrbitalPlay Controller</h1>
-        <p class="c-hardware-showcase__lead">
-          Een unieke combinatie van ambachtelijk houtwerk en moderne technologie
+    <!-- About showcase section -->
+    <section class="c-about-showcase">
+      <div class="c-about-showcase__content">
+        <h1 class="c-about-showcase__title">Over OrbitalPlay</h1>
+        <p class="c-about-showcase__lead">
+          Waar innovatieve technologie en gaming samenkomen
         </p>
       </div>
     </section>
 
-    <!-- Hardware details section -->
-    <section class="c-hardware-info">
-      <div class="c-hardware-info__grid">
+    <!-- Main content section -->
+    <section class="c-about-info">
+      <div class="c-about-info__grid">
         <!-- Image column -->
-        <div class="c-hardware-info__media">
+        <div class="c-about-info__media">
           <img
-            src="assets/hardware_main.png"
-            alt="OrbitalPlay Controller"
-            class="c-hardware-info__image"
+            src="assets/about_main.png"
+            alt="OrbitalPlay Team"
+            class="c-about-info__image"
           />
         </div>
 
         <!-- Text content column -->
-        <div class="c-hardware-info__content">
-          <h2 class="c-hardware-info__title">Technische Details</h2>
-          <p class="c-hardware-info__text">
-            De OrbitalPlay controller combineert een robuust houten frame met 3D-geprinte 
-            componenten voor een optimale balans tussen esthetiek en functionaliteit.
+        <div class="c-about-info__content">
+          <h2 class="c-about-info__title">Onze Missie</h2>
+          <p class="c-about-info__text">
+            OrbitalPlay is ontstaan uit een passie voor het combineren van beweging 
+            en gaming. We ontwikkelen games die niet alleen vermaken, maar ook 
+            uitdagen tot actieve participatie.
           </p>
           
-          <div class="c-hardware-info__features">
+          <div class="c-about-info__features">
             <div class="c-feature">
-              <h3 class="c-feature__title">Precisie Beweging</h3>
+              <h3 class="c-feature__title">Innovatieve Controller</h3>
               <p class="c-feature__text">
-                Zes omnidirectionele kogellagers zorgen voor een soepele en nauwkeurige 
-                beweging van de centrale bal in alle richtingen.
+                Een uniek besturingssysteem dat natuurlijke bewegingen vertaalt 
+                naar nauwkeurige game-input.
               </p>
             </div>
 
             <div class="c-feature">
-              <h3 class="c-feature__title">Geavanceerde Tracking</h3>
+              <h3 class="c-feature__title">Open Source</h3>
               <p class="c-feature__text">
-                Een sensor onder de bal registreert elke beweging en vertaalt deze 
-                naar precieze input voor je games.
+                We geloven in transparantie en delen onze technologie vrijelijk 
+                met de gemeenschap.
               </p>
             </div>
 
             <div class="c-feature">
-              <h3 class="c-feature__title">Eenvoudige Aansluiting</h3>
+              <h3 class="c-feature__title">Actief Gaming</h3>
               <p class="c-feature__text">
-                Aangedreven door een Teensy microcontroller, communiceert de controller 
-                naadloos met je PC via USB.
+                Games die spelers aanmoedigen om in beweging te komen tijdens 
+                het spelen.
               </p>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- DIY section -->
-    <section class="c-hardware-diy">
-      <div class="c-hardware-diy__content">
-        <h2 class="c-hardware-diy__title">Bouw Je Eigen Controller</h2>
-        <p class="c-hardware-diy__text">
-          Alle benodigde bestanden en instructies zijn beschikbaar op ons
-          <a href="https://github.com/blommejan/orbitalplay" 
-             target="_blank" 
-             rel="noopener noreferrer"
-             class="c-hardware-diy__link">
-            GitHub repository
-          </a>
-        </p>
-
-        <div class="c-hardware-diy__resources">
-          <div class="c-resource">
-            <h3 class="c-resource__title">Materiaallijst</h3>
-            <p class="c-resource__text">
-              Complete lijst van alle benodigde componenten en materialen
-            </p>
-          </div>
-
-          <div class="c-resource">
-            <h3 class="c-resource__title">3D Printbestanden</h3>
-            <p class="c-resource__text">
-              Kant-en-klare ontwerpen voor alle 3D-geprinte onderdelen
-            </p>
-          </div>
-
-          <div class="c-resource">
-            <h3 class="c-resource__title">Handleiding</h3>
-            <p class="c-resource__text">
-              Stap-voor-stap instructies voor montage en configuratie
-            </p>
           </div>
         </div>
       </div>
@@ -155,8 +115,5 @@
   <footer class="c-footer">
     <p>&copy; 2025 OrbitalPlay</p>
   </footer>
-
-  <!-- JS -->
-  <script src="script/script.js"></script>
 </body>
 </html>

@@ -2,107 +2,153 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>OrbitalPlay - About</title>
-  <!-- Fonts -->
+  <title>OrbitalPlay - Games</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400;700&display=swap"
     rel="stylesheet"
   />
-  <!-- Main Stylesheet -->
+  <link rel="shortcut icon" href="assets/logo.ico.png">
   <link rel="stylesheet" href="styles/style.css" />
 </head>
 <body class="u-body">
   <!-- ========== HEADER ========== -->
   <header class="c-header">
     <div class="c-header__container o-container">
-      <!-- White rectangle behind the logo with rounded corners -->
       <div class="c-header__brand-bg">
         <a href="index.html" class="c-header__brand-link">
-          <img
-            src="assets/logo.png"
-            alt="OrbitalPlay Logo"
-            class="c-header__logo"
-          />
+          <svg class="c-header__logo" width="487" height="201" viewBox="0 0 487 201" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M290.112 141.613C298.522 128.402 304.493 113.765 307.201 98.4048C309.909 83.0449 309.08 68.5266 305.291 55.5279L314.73 2H339.73L305 198.962H280L290.112 141.613ZM440.024 26.6202C453.831 26.6202 463.08 37.643 460.682 51.2404C458.285 64.8377 445.148 75.8606 431.341 75.8606H331.341L327 100.481H427C454.614 100.481 480.887 78.4351 485.682 51.2404C490.478 24.0457 471.979 2 444.365 2H344.365L340.024 26.6202H440.024Z"/>
+            <path d="M302.334 98.4808C292.744 152.87 240.205 197.743 184.985 198.707C129.765 199.671 92.7745 156.361 102.365 101.971C111.955 47.5818 164.494 2.70911 219.714 1.74524C274.934 0.781368 311.925 44.0913 302.334 98.4808ZM127.361 101.535C120.168 142.327 147.911 174.81 189.326 174.087C230.741 173.364 270.145 139.709 277.338 98.9171C284.531 58.125 256.788 25.6425 215.373 26.3654C173.958 27.0883 134.554 60.7429 127.361 101.535Z"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M131.242 189L5 189C2.23858 189 0 191.239 0 194C0 196.761 2.23858 199 5 199H151.884C144.386 196.545 137.47 193.17 131.242 189Z"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M102.36 154L30 154C27.2386 154 25 156.239 25 159C25 161.761 27.2386 164 30 164H107.434C105.524 160.813 103.828 157.474 102.36 154Z"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M95.6478 119L55 119C52.2386 119 50 121.239 50 124C50 126.761 52.2386 129 55 129H96.0864C95.7663 125.731 95.6177 122.395 95.6478 119Z"/>
+          </svg>
         </a>
       </div>
 
       <nav class="c-header__nav c-nav">
         <ul class="c-nav__list">
-          <!-- Highlight ABOUT as active on the home page -->
-          <li class="c-nav__item">
-            <a href="index.html" class="c-nav__link c-nav__link--active">
-              ABOUT
-            </a>
-          </li>
-          <li class="c-nav__item">
-            <a href="games.html" class="c-nav__link">
-              GAMES
-            </a>
-          </li>
           <li class="c-nav__item">
             <a href="hardware.html" class="c-nav__link">
               HARDWARE
             </a>
           </li>
+          <li class="c-nav__item">
+            <a href="index.html" class="c-nav__link c-nav__link--active">
+              GAMES
+            </a>
+          </li>
+          <li class="c-nav__item">
+            <a href="about.html" class="c-nav__link">
+              ABOUT
+            </a>
+          </li>
         </ul>
       </nav>
 
-      <div class="c-header__actions">
-        <!-- Theme toggle / language placeholders -->
-        <button class="c-header__action-btn" title="Toggle Theme">☀️/🌙</button>
-        <button class="c-header__action-btn" title="Language">EN</button>
-      </div>
     </div>
   </header>
   <!-- ========== /HEADER ========== -->
 
   <main class="c-main o-container">
-    <!--
-      If you still want a "Hero" section at the top that spans full width,
-      you can keep it or remove it. We'll remove it here to focus on the row layout.
-      Uncomment if needed:
-
-      <section class="c-hero">
+    <!-- Game Selection -->
+    <div class="c-game-selection c-game-selection--main">
+      <div
+        class="c-game-card"
+        data-gamename="Target Shooter"
+        onclick="selectGame(event)"
+      >
         <img
-          src="assets/placeholder.png"
-          alt="Placeholder hero image"
-          class="c-hero__image"
+          src="assets/art_targetshooter.png"
+          alt="Target Shooter"
+          class="c-game-card__image"
         />
-      </section>
-    -->
-
-    <!-- About Section in a row -->
-    <section class="c-about c-about--row">
-      <!-- Image on the left (or right, your choice) -->
-      <img
-        src="assets/placeholder.png"
-        alt="About OrbitalPlay"
-        class="c-about__image"
-      />
-
-      <!-- Text content on the side -->
-      <div class="c-about__content">
-        <h2 class="c-about__title">About OrbitalPlay</h2>
-        <p class="c-about__paragraph">
-          OrbitalPlay is a fitness-inspired gaming platform that unites
-          custom-built JavaScript games with an innovative controller.
-          Accessible online, the games feature dynamic themes and skins for
-          a unique experience. Combined with a custom controller that delivers
-          real-time feedback and intuitive controls, OrbitalPlay offers a
-          fully immersive way to merge fitness and fun.
-        </p>
+        <h3 class="c-game-card__title">Target Shooter</h3>
       </div>
+
+      <div
+        class="c-game-card"
+        data-gamename="Villain Attack"
+        onclick="selectGame(event)"
+      >
+        <img
+          src="assets/art_villainattack.png"
+          alt="Villain Attack"
+          class="c-game-card__image"
+        />
+        <h3 class="c-game-card__title">Villain Attack</h3>
+      </div>
+    </div>
+
+    <!-- Theme Selection (initially hidden) -->
+    <div class="c-theme-selection" id="js-themeSelection">
+      <button class="c-theme-selection__back" onclick="showGameSelection()">← Back to Games</button>
+
+      <!-- Target Shooter Themes -->
+      <div class="c-theme-cards" id="js-targetShooterThemes" style="display: none;">
+        <div class="c-theme-card" data-theme="circus" onclick="startGame('targetShooter', 'circus')">
+          <img src="assets/themes/shooter/circus.png" alt="Circus Theme" class="c-theme-card__image">
+          <h3 class="c-theme-card__title">Circus</h3>
+        </div>
+        <div class="c-theme-card" data-theme="cowboy" onclick="startGame('targetShooter', 'cowboy')">
+          <img src="assets/themes/shooter/cowboy.png" alt="Cowboy Theme" class="c-theme-card__image">
+          <h3 class="c-theme-card__title">Cowboy</h3>
+        </div>
+        <div class="c-theme-card" data-theme="cyber" onclick="startGame('targetShooter', 'cyber')">
+          <img src="assets/themes/shooter/cyber.png" alt="Cyber Theme" class="c-theme-card__image">
+          <h3 class="c-theme-card__title">Cyber</h3>
+        </div>
+        <div class="c-theme-card" data-theme="space" onclick="startGame('targetShooter', 'space')">
+          <img src="assets/themes/shooter/space.png" alt="Space Theme" class="c-theme-card__image">
+          <h3 class="c-theme-card__title">Space</h3>
+        </div>
+        <div class="c-theme-card" data-theme="zombie" onclick="startGame('targetShooter', 'zombie')">
+          <img src="assets/themes/shooter/zombie.png" alt="Zombie Theme" class="c-theme-card__image">
+          <h3 class="c-theme-card__title">Zombie</h3>
+        </div>
+      </div>
+
+      <!-- Villain Attack Themes -->
+      <div class="c-theme-cards" id="js-villainAttackThemes" style="display: none;">
+        <div class="c-theme-card" data-theme="candy" onclick="startGame('villainAttack', 'candy')">
+          <img src="assets/themes/attack/candy.png" alt="Candy Theme" class="c-theme-card__image">
+          <h3 class="c-theme-card__title">Candy</h3>
+        </div>
+        <div class="c-theme-card" data-theme="fantasy" onclick="startGame('villainAttack', 'fantasy')">
+          <img src="assets/themes/attack/fantasy.png" alt="Fantasy Theme" class="c-theme-card__image">
+          <h3 class="c-theme-card__title">Fantasy</h3>
+        </div>
+        <div class="c-theme-card" data-theme="hero" onclick="startGame('villainAttack', 'hero')">
+          <img src="assets/themes/attack/hero.png" alt="Hero Theme" class="c-theme-card__image">
+          <h3 class="c-theme-card__title">Hero</h3>
+        </div>
+        <div class="c-theme-card" data-theme="jungle" onclick="startGame('villainAttack', 'jungle')">
+          <img src="assets/themes/attack/jungle.png" alt="Jungle Theme" class="c-theme-card__image">
+          <h3 class="c-theme-card__title">Jungle</h3>
+        </div>
+        <div class="c-theme-card" data-theme="space" onclick="startGame('villainAttack', 'space')">
+          <img src="assets/themes/attack/space.png" alt="Space Theme" class="c-theme-card__image">
+          <h3 class="c-theme-card__title">Space</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Game Area -->
+    <section class="c-game-area" id="js-gameArea" style="display: none;">
+      <h1 id="js-selectedGameTitle" class="c-game-area__title"></h1>
+      <div id="js-gameContainer" style="width:100%; height:100%; position:relative;"></div>
     </section>
   </main>
 
-  <!-- Footer -->
   <footer class="c-footer">
     <p>&copy; 2025 OrbitalPlay</p>
   </footer>
 
-  <!-- JS (optional) -->
+  <!-- JS -->
   <script src="script/script.js"></script>
+  <script src="script/targetshooter.js"></script>
+  <script src="script/villainattack.js"></script>
 </body>
 </html>
