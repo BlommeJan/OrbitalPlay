@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Zombie vs Hero - No Time Limit (Cover BG)</title>
+  <!-- Google Font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;700&display=swap"
+    rel="stylesheet"
+  >
+  <style>
+    /*
+     * ----------------------------------------------
+     * CSS Variables & Rem Conversions
+     * ----------------------------------------------
+     * 1rem = 16px
+     */
+    :root {
+      /* Colors */
+      --color-bg-gradient: linear-gradient(135deg, #f0f0f0 0%, #e6ebf0 100%);
+      --color-white: #fff;
+      --color-light-gray: #fafafa;
+      --color-mid-gray: #ddd;
+      --color-dark-gray: #333;
+      --color-mid-border: #ccc;
+      --color-primary: #3f51b5;
+      --color-primary-hover: #303f9f;
+      --color-overlay-dark: rgba(0, 0, 0, 0.7);
+
+      /* Shadows */
+      --shadow-subtle: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.1);
+      --shadow-inset-light: inset 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.05);
+      --shadow-medium: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+      --shadow-hover: 0 0.375rem 0.75rem rgba(0, 0, 0, 0.3);
+
+      /* Sizing */
+      --radius-sm: 0.5rem;        /* 8px  */
+      --radius-md: 0.625rem;      /* 10px */
+      --border-width-sm: 0.125rem;/* 2px  */
+
+      /* Spacing */
+      --spacing-xs: 0.625rem;     /* 10px */
+      --spacing-sm: 1.25rem;      /* 20px */
+      --spacing-md: 2.5rem;       /* 40px */
+
+      /* Typography */
+      --font-family-base: 'Albert Sans', sans-serif;
+      --font-size-default: 1rem;  /* 16px */
+      --font-size-large: 2em;     /* relative to default */
+      --font-size-huge: 5em;
+      --transition-duration: 0.3s;
+    }
+
+    /* 
+     * ----------------------------------------------
+     * Base & Layout
+     * ----------------------------------------------
+     */
+
+    body {
+      font-family: var(--font-family-base);
+      background: var(--color-bg-gradient);
+      margin: 0;
+      padding: 0;
+      height: 100vh;       /* Make body full viewport height */
+      overflow: hidden;    /* No scrollbars */
+      display: flex;       /* Use flex so the container can fill the screen */
+      flex-direction: column;
+    }
+
+    .game-container {
+      flex: 1;                      /* Fill the remaining vertical space */
+      padding: var(--spacing-sm);
+      background-color: var(--color-white);
+      border-radius: var(--radius-sm);
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: var(--shadow-subtle);
+    }
+
+    .main-content {
+      display: flex;
+      flex: 1;                      /* Fill remaining vertical space */
+      padding: var(--spacing-sm);
+      box-sizing: border-box;
+      gap: var(--spacing-sm);
+      overflow: hidden;            /* Ensure no scrollbars inside */
+    }
+
+    /* 
+     * ----------------------------------------------
+     * Left Column: High Scores
+     * ----------------------------------------------
+     */
+
+    .high-scores-container {
+      flex: 1;
+      background-color: var(--color-light-gray);
+      border: var(--border-width-sm) solid var(--color-mid-gray);
+      border-radius: var(--radius-sm);
+      padding: var(--spacing-xs);
+      box-sizing: border-box;
+      overflow-y: auto;
+      box-shadow: var(--shadow-inset-light);
+    }
+
+    .high-scores-container h2 {
+      margin-top: 0;
+      text-align: center;
+      color: var(--color-dark-gray);
+    }
+
+    #high-score-list {
+      list-style: decimal inside;
+      padding: 0;
+      margin: 0;
+      font-size: 1.1em;
+      color: var(--color-dark-gray);
+    }
+
+    /* 
+     * ----------------------------------------------
+     * Center Column: Game Area
+     * ----------------------------------------------
+     */
+
+    .game-area-container {
+      flex: 5;
+      position: relative;
+      background-color: #e0e0e0;
+      border: var(--border-width-sm) solid var(--color-mid-border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-inset-light);
+    }
+
+    /* Start Button */
+    #start-btn {
+      padding: var(--spacing-sm) var(--spacing-md);
+      font-size: var(--font-size-large);
+      cursor: pointer;
+      position: absolute;
+      display: block;
+      z-index: 1001;
+      background-color: var(--color-primary);
+      color: var(--color-white);
+      border: none;
+      border-radius: var(--radius-md);
+      transition:
+        background-color var(--transition-duration),
+        transform var(--transition-duration),
+        box-shadow var(--transition-duration);
+      box-shadow: var(--shadow-medium);
+    }
+
+    #start-btn:hover {
+      background-color: var(--color-primary-hover);
+      transform: scale(1.05);
+      box-shadow: var(--shadow-hover);
+    }
+
+    /* Start Countdown Overlay */
+    #start-countdown {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: var(--font-size-huge);
+      color: var(--color-white);
+      background-color: var(--color-overlay-dark);
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-radius: var(--radius-md);
+      display: none;
+      z-index: 1002;
+      text-align: center;
+    }
+
+    /* Actual Game Area (Canvas) */
+    #zvh-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Pause Menu Overlay */
+    #pause-menu {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--color-overlay-dark);
+      color: var(--color-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3em;
+      z-index: 1003;
+      cursor: inherit;
+      display: none; /* Hidden by default */
+    }
+
+    .pause-menu-content {
+      text-align: center;
+    }
+
+    .pause-menu-content button {
+      font-size: 0.8em; /* So it doesn't get huge inside the menu */
+      margin-top: var(--spacing-xs);
+    }
+
+    /* 
+     * ----------------------------------------------
+     * Right Column: Score, Wave, HP
+     * ----------------------------------------------
+     */
+
+    .score-time-container {
+      flex: 1;
+      background-color: var(--color-light-gray);
+      border: var(--border-width-sm) solid var(--color-mid-gray);
+      border-radius: var(--radius-sm);
+      padding: var(--spacing-sm);
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--spacing-sm);
+      box-shadow: var(--shadow-inset-light);
+    }
+
+    .score-time-container div {
+      font-size: 1.5em;
+      color: var(--color-dark-gray);
+    }
+
+    .score-time-container hr {
+      width: 80%;
+      border: 0.0625rem solid var(--color-mid-border);
+    }
+
+    .back-to-games {
+      margin-top: 0.625rem;
+      font-size: 1.2em;
+      color: var(--color-primary);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="game-container">
+    <div class="main-content">
+      <!-- Left Column: High Scores -->
+      <div class="high-scores-container">
+        <h2>High Scores</h2>
+        <ol id="high-score-list"></ol>
+      </div>
+
+      <!-- Center Column: Game Area -->
+      <div class="game-area-container">
+        <!-- Start Button -->
+        <button id="start-btn">Start</button>
+
+        <!-- Countdown Overlay -->
+        <div id="start-countdown">3</div>
+
+        <!-- Actual Game Area: Canvas for Zombie vs Hero -->
+        <canvas id="zvh-canvas"></canvas>
+
+        <!-- Pause Menu -->
+        <div id="pause-menu">
+          <div class="pause-menu-content">
+            <h3>Paused</h3>
+            <button id="resume-btn">Resume</button>
+            <button id="menu-btn">Main Menu</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Score, Wave, HP -->
+      <div class="score-time-container">
+        <div>Score: <span id="score">0</span></div>
+        <div>Wave: <span id="wave">1</span></div>
+        <div>HP: <span id="hp">100</span></div>
+        <hr>
+        <div class="back-to-games">Back to games</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ========== Image Paths ==========
+    const backgroundImage = 'images/backgroundV.png';  // REPLACE with your path
+    const heroImage       = 'images/heroV.png';
+    const zombieImage     = 'images/zombieV.png';
+    const bulletImage     = 'images/bulletV.png';
+
+    // DOM References
+    const startBtn       = document.getElementById('start-btn');
+    const startCountdown = document.getElementById('start-countdown');
+    const pauseMenu      = document.getElementById('pause-menu');
+    const resumeBtn      = document.getElementById('resume-btn');
+    const menuBtn        = document.getElementById('menu-btn');
+    const backToGames    = document.querySelector('.back-to-games');
+
+    const scoreEl  = document.getElementById('score');
+    const waveEl   = document.getElementById('wave');
+    const hpEl     = document.getElementById('hp');
+
+    let zvhCanvas = null, zvhCtx = null;
+    let zvhWidth  = 0,    zvhHeight = 0;
+
+    // Game states
+    let isPlaying = false;
+    let isPaused  = false;
+
+    let score   = 0;
+    let wave    = 1;
+    let playerHP= 100;
+
+    // Player
+    const player = { x:0, y:0, radius:30 };
+    const playerSpeed = 200;
+
+    // Zombies/Bullets
+    let zombies = [];
+    let bullets = [];
+
+    // Wave / spawn logic
+    let spawnTimer = 0;
+    let nextWaveScore = 10;
+
+    // Mouse
+    let mouseX = 0, mouseY = 0;
+    // Keys
+    const keys = {};
+
+    // Timestamps
+    let lastTime = 0;
+
+    // Images
+    const bgImg     = new Image();
+    const heroImg   = new Image();
+    const zombieImg = new Image();
+    const bulletImg = new Image();
+
+    window.onload = function() {
+      // Setup canvas
+      zvhCanvas = document.getElementById('zvh-canvas');
+      zvhCtx    = zvhCanvas.getContext('2d');
+      resizeCanvas();
+
+      // Load images
+      bgImg.src     = backgroundImage;
+      heroImg.src   = heroImage;
+      zombieImg.src = zombieImage;
+      bulletImg.src = bulletImage;
+
+      // Event Listeners
+      window.addEventListener('resize', resizeCanvas);
+      zvhCanvas.addEventListener('mousemove', onMouseMove);
+      zvhCanvas.addEventListener('mousedown', onMouseDown);
+      document.addEventListener('keydown', onKeyDown);
+      document.addEventListener('keyup', onKeyUp);
+
+      startBtn.addEventListener('click', startGameWithCountdown);
+      resumeBtn.addEventListener('click', resumeGame);
+      menuBtn.addEventListener('click', returnToMainMenu);
+
+      backToGames.addEventListener('click', () => {
+        // Or navigate to your overall "Games" page
+        window.location.href = 'games.html';
+      });
+
+      // Display High Scores on load
+      displayHighScores();
+    };
+
+    // ========== Layout / Canvas Resize =============
+    function resizeCanvas() {
+      zvhWidth  = zvhCanvas.offsetWidth;
+      zvhHeight = zvhCanvas.offsetHeight;
+      zvhCanvas.width  = zvhWidth;
+      zvhCanvas.height = zvhHeight;
+    }
+
+    // ========== Start Game with Countdown ==========
+    function startGameWithCountdown() {
+      startBtn.style.display = 'none';
+      startCountdown.style.display = 'flex';
+      startCountdown.textContent = '3';
+
+      let countdownValue = 3;
+      const intervalId = setInterval(() => {
+        countdownValue--;
+        if (countdownValue > 0) {
+          startCountdown.textContent = countdownValue;
+        } else {
+          clearInterval(intervalId);
+          startCountdown.style.display = 'none';
+          startGame();
+        }
+      }, 1000);
+    }
+
+    // ========== Start Game ==========
+    function startGame() {
+      isPlaying = true;
+      isPaused  = false;
+
+      score     = 0;
+      wave      = 1;
+      nextWaveScore = 10;
+      playerHP  = 100;
+
+      spawnTimer= 0;
+      zombies   = [];
+      bullets   = [];
+
+      // Center player
+      player.x  = zvhWidth / 2;
+      player.y  = zvhHeight / 2;
+
+      // Reset UI
+      scoreEl.textContent = score;
+      waveEl.textContent  = wave;
+      hpEl.textContent    = playerHP;
+
+      lastTime = 0;
+      requestAnimationFrame(gameLoop);
+    }
+
+    // ========== Main Loop ==========
+    function gameLoop(timestamp) {
+      const dt = (timestamp - lastTime) / 1000;
+      lastTime = timestamp;
+
+      if (isPlaying && !isPaused && playerHP > 0) {
+        update(dt);
+      }
+      draw();
+
+      if (isPlaying) {
+        requestAnimationFrame(gameLoop);
+      }
+    }
+
+    // ========== Update ==========
+    function update(dt) {
+      // Movement (WASD)
+      if (keys['w']) player.y -= playerSpeed*dt;
+      if (keys['s']) player.y += playerSpeed*dt;
+      if (keys['a']) player.x -= playerSpeed*dt;
+      if (keys['d']) player.x += playerSpeed*dt;
+
+      // Clamp
+      if (player.x < player.radius) player.x = player.radius;
+      if (player.x > zvhWidth - player.radius) player.x = zvhWidth - player.radius;
+      if (player.y < player.radius) player.y = player.radius;
+      if (player.y > zvhHeight - player.radius) player.y = zvhHeight - player.radius;
+
+      // Update zombies
+      for (let i = zombies.length - 1; i >= 0; i--) {
+        const z = zombies[i];
+        const dx = player.x - z.x;
+        const dy = player.y - z.y;
+        const dist = Math.hypot(dx, dy);
+        if (dist > 0) {
+          const speed = 80;
+          z.x += (dx/dist)*speed*dt;
+          z.y += (dy/dist)*speed*dt;
+          z.angle = Math.atan2(dy, dx) + Math.PI/2;
+        }
+        // collision with player
+        if (Math.hypot(z.x - player.x, z.y - player.y) < (z.radius + player.radius)) {
+          playerHP -= 100*dt;
+          if (playerHP < 0) playerHP = 0;
+          hpEl.textContent = Math.floor(playerHP);
+        }
+      }
+
+      // Update bullets
+      for (let i = bullets.length - 1; i >= 0; i--) {
+        const b = bullets[i];
+        b.x += b.vx*dt;
+        b.y += b.vy*dt;
+        b.spinAngle += 10*dt;
+        b.angle = b.spinAngle;
+
+        // out of bounds
+        if (b.x < 0 || b.x > zvhWidth || b.y < 0 || b.y > zvhHeight) {
+          bullets.splice(i,1);
+          continue;
+        }
+        // collision with zombies
+        for (let j = zombies.length - 1; j >= 0; j--) {
+          const z = zombies[j];
+          if (Math.hypot(b.x - z.x, b.y - z.y) < (b.radius + z.radius)) {
+            bullets.splice(i,1);
+            zombies.splice(j,1);
+            score++;
+            scoreEl.textContent = score;
+            break;
+          }
+        }
+      }
+
+      // Spawn
+      spawnTimer += dt;
+      const spawnInterval = getSpawnInterval();
+      if (spawnTimer >= spawnInterval) {
+        spawnTimer = 0;
+        // spawn wave # of zombies
+        for (let w = 0; w < wave; w++) {
+          zombies.push(createZombie());
+        }
+      }
+      // Wave logic
+      if (score >= nextWaveScore) {
+        wave++;
+        waveEl.textContent = wave;
+        nextWaveScore *= 2;
+      }
+
+      // Check HP => game over
+      if (playerHP <= 0) {
+        endGame();
+      }
+    }
+
+    // ========== Draw ==========
+    function draw() {
+      // Draw background image in "cover" style
+      drawBackgroundCover();
+
+      // Draw player => rotate to face mouse
+      const angle = Math.atan2(mouseY - player.y, mouseX - player.x);
+      drawRot(heroImg, player.x, player.y, angle, 0.6);
+
+      // Draw zombies
+      for (let z of zombies) {
+        drawRot(zombieImg, z.x, z.y, z.angle, 0.5);
+      }
+
+      // Draw bullets
+      for (let b of bullets) {
+        drawRot(bulletImg, b.x, b.y, b.angle, 0.3);
+      }
+
+      // Game Over overlay
+      if (playerHP <= 0) {
+        zvhCtx.fillStyle = 'rgba(0,0,0,0.5)';
+        zvhCtx.fillRect(0,0,zvhWidth,zvhHeight);
+        zvhCtx.fillStyle = '#fff';
+        zvhCtx.font = '2rem Arial';
+        zvhCtx.textAlign = 'center';
+        zvhCtx.fillText('GAME OVER', zvhWidth/2, zvhHeight/2 - 20);
+        zvhCtx.font = '1.5rem Arial';
+        zvhCtx.fillText(`Score: ${score}`, zvhWidth/2, zvhHeight/2 + 20);
+        zvhCtx.fillText(`Press 'R' to Restart or 'Escape' to Quit`, zvhWidth/2, zvhHeight/2 + 60);
+      }
+    }
+
+    // ======= "Cover" Style Background =======
+    function drawBackgroundCover() {
+      // If image not loaded yet, skip
+      if (!bgImg.width || !bgImg.height) return;
+
+      const imageRatio = bgImg.width / bgImg.height;
+      const canvasRatio = zvhWidth / zvhHeight;
+
+      let renderW, renderH;
+      // If canvas is "wider" relative to the image ratio, fill horizontally
+      // and crop top/bottom. Otherwise, fill vertically and crop left/right.
+      if (canvasRatio > imageRatio) {
+        // Fill horizontally
+        renderW = zvhWidth;
+        renderH = renderW / imageRatio;
+      } else {
+        // Fill vertically
+        renderH = zvhHeight;
+        renderW = renderH * imageRatio;
+      }
+
+      const offsetX = (zvhWidth - renderW) * 0.5;
+      const offsetY = (zvhHeight - renderH) * 0.5;
+
+      zvhCtx.save();
+      zvhCtx.drawImage(bgImg, offsetX, offsetY, renderW, renderH);
+      zvhCtx.restore();
+    }
+
+    // ========== End Game ==========
+    function endGame() {
+      isPlaying = false;
+      updateHighScores();
+      // Show Start button for a new game
+      startBtn.style.display = 'block';
+    }
+
+    // ========== Pause/Resume ==========
+    function resumeGame() {
+      if (!isPlaying) return;
+      isPaused = false;
+      pauseMenu.style.display = 'none';
+    }
+
+    function returnToMainMenu() {
+      // Here you can define what "main menu" means
+      isPlaying = false;
+      document.querySelector('.game-container').innerHTML =
+        '<h2 style="text-align:center;">Returned to Main Menu</h2>';
+    }
+
+    // ========== Spawn Functions ==========
+    function createZombie() {
+      // spawn from left(0), right(1), or bottom(2)
+      const sides = [0,1,2];
+      const side = sides[Math.floor(Math.random()*sides.length)];
+      let zx=0, zy=0;
+      switch (side) {
+        case 0: // left
+          zx = 0; 
+          zy = Math.random()*zvhHeight;
+          break;
+        case 1: // right
+          zx = zvhWidth;
+          zy = Math.random()*zvhHeight;
+          break;
+        default: // bottom
+          zx = Math.random()*zvhWidth;
+          zy = zvhHeight;
+      }
+      return { x: zx, y: zy, radius:25, angle:0 };
+    }
+
+    function getSpawnInterval() {
+      // wave-based logic
+      const baseSpawnInterval = 2;
+      const minSpawnInterval  = 0.5;
+      const spawnRateFactor   = 0.02;
+
+      let interval = baseSpawnInterval - (wave - 1)*spawnRateFactor;
+      if (interval < minSpawnInterval) interval = minSpawnInterval;
+      return interval;
+    }
+
+    // ========== Bullets ==========
+    function shoot(x, y, tx, ty) {
+      const dx = tx - x, dy = ty - y;
+      let dist = Math.hypot(dx, dy);
+      if (dist < 1) dist = 1;
+      const speed = 450;
+      const vx = (dx/dist)*speed;
+      const vy = (dy/dist)*speed;
+
+      bullets.push({
+        x, y, vx, vy,
+        radius: 10,
+        spinAngle:0,
+        angle:0
+      });
+    }
+
+    // ========== Drawing Helpers ==========
+    function drawRot(img, cx, cy, angle, scale=1) {
+      zvhCtx.save();
+      zvhCtx.translate(cx, cy);
+      zvhCtx.rotate(angle);
+      const w = img.width * scale;
+      const h = img.height * scale;
+      zvhCtx.drawImage(img, -w/2, -h/2, w, h);
+      zvhCtx.restore();
+    }
+
+    // ========== Input ==========
+    function onMouseMove(e) {
+      const rect = zvhCanvas.getBoundingClientRect();
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
+    }
+
+    function onMouseDown() {
+      if (!isPaused && isPlaying && playerHP > 0) {
+        shoot(player.x, player.y, mouseX, mouseY);
+      }
+    }
+
+    function onKeyDown(e) {
+      keys[e.key.toLowerCase()] = true;
+
+      if (!isPlaying) return;
+
+      if (e.key === 'Escape') {
+        if (playerHP <= 0) {
+          // Already game over => main menu
+          returnToMainMenu();
+        } else {
+          isPaused = !isPaused;
+          pauseMenu.style.display = isPaused ? 'flex' : 'none';
+        }
+      } 
+      else if (e.key.toLowerCase() === 'r' && playerHP <= 0) {
+        // Restart the game after Game Over
+        startGameWithCountdown();
+      }
+    }
+
+    function onKeyUp(e) {
+      keys[e.key.toLowerCase()] = false;
+    }
+
+    // ========== High Scores ==========
+    function updateHighScores() {
+      // Use your own storage key to avoid collisions
+      let highScores = JSON.parse(localStorage.getItem('zvhHighScores')) || [];
+      highScores.push(score);
+      highScores.sort((a, b) => b - a);
+      highScores = highScores.slice(0, 5);
+      localStorage.setItem('zvhHighScores', JSON.stringify(highScores));
+      displayHighScores(highScores);
+    }
+
+    function displayHighScores(scores = null) {
+      if (!scores) {
+        scores = JSON.parse(localStorage.getItem('zvhHighScores')) || [];
+      }
+      const list = scores.map(s => `<li>${s}</li>`).join('');
+      document.getElementById('high-score-list').innerHTML = list;
+    }
+  </script>
+</body>
+</html>
