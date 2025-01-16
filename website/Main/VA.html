@@ -51,7 +51,7 @@
       --transition-duration: 0.3s;
     }
 
-    /* 
+    /*
      * ----------------------------------------------
      * Base & Layout
      * ----------------------------------------------
@@ -89,7 +89,7 @@
       overflow: hidden;            /* Ensure no scrollbars inside */
     }
 
-    /* 
+    /*
      * ----------------------------------------------
      * Left Column: High Scores
      * ----------------------------------------------
@@ -120,7 +120,7 @@
       color: var(--color-dark-gray);
     }
 
-    /* 
+    /*
      * ----------------------------------------------
      * Center Column: Game Area
      * ----------------------------------------------
@@ -214,7 +214,7 @@
       margin-top: var(--spacing-xs);
     }
 
-    /* 
+    /*
      * ----------------------------------------------
      * Right Column: Score, Wave, HP
      * ----------------------------------------------
@@ -375,7 +375,7 @@
 
       backToGames.addEventListener('click', () => {
         // Or navigate to your overall "Games" page
-        window.location.href = 'games.html';
+        window.location.href = 'index.html';
       });
 
       // Display High Scores on load
@@ -626,7 +626,7 @@
       let zx=0, zy=0;
       switch (side) {
         case 0: // left
-          zx = 0; 
+          zx = 0;
           zy = Math.random()*zvhHeight;
           break;
         case 1: // right
@@ -705,7 +705,7 @@
           isPaused = !isPaused;
           pauseMenu.style.display = isPaused ? 'flex' : 'none';
         }
-      } 
+      }
       else if (e.key.toLowerCase() === 'r' && playerHP <= 0) {
         // Restart the game after Game Over
         startGameWithCountdown();
@@ -734,6 +734,9 @@
       const list = scores.map(s => `<li>${s}</li>`).join('');
       document.getElementById('high-score-list').innerHTML = list;
     }
+
+    const selectedTheme = localStorage.getItem('selectedTheme') || 'circus'; // default theme
+    console.log(selectedTheme)
   </script>
 </body>
 </html>

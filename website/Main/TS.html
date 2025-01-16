@@ -6,7 +6,7 @@
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* 
+    /*
      * ----------------------------------------------
      * CSS Variables & Rem Conversions
      * ----------------------------------------------
@@ -61,7 +61,7 @@
       --transition-duration: 0.3s;
     }
 
-    /* 
+    /*
      * ----------------------------------------------
      * Base & Layout
      * ----------------------------------------------
@@ -96,7 +96,7 @@
       gap: var(--spacing-sm);
     }
 
-    /* 
+    /*
      * ----------------------------------------------
      * Left Column: High Scores
      * ----------------------------------------------
@@ -127,7 +127,7 @@
       color: var(--color-medium-dark-gray);
     }
 
-    /* 
+    /*
      * ----------------------------------------------
      * Center Column: Game Area
      * ----------------------------------------------
@@ -214,7 +214,7 @@
       transition: opacity var(--transition-duration);
     }
 
-    /* 
+    /*
      * ----------------------------------------------
      * Right Column: Score and Time
      * ----------------------------------------------
@@ -252,7 +252,7 @@
       cursor: pointer;
     }
 
-    /* 
+    /*
      * ----------------------------------------------
      * Pause Menu
      * ----------------------------------------------
@@ -289,13 +289,13 @@
       <div class="game-area-container">
         <!-- Start Button -->
         <button id="start-btn">Start</button>
-        
+
         <!-- Countdown Overlay -->
         <div id="start-countdown">3</div>
-        
+
         <!-- Actual Game Area -->
         <div id="game-area"></div>
-        
+
         <!-- Pause Menu -->
         <div id="pause-menu">Paused</div>
       </div>
@@ -358,7 +358,7 @@
     startBtn.addEventListener('click', startGameWithCountdown);
     document.addEventListener('keydown', handleKeyDown);
     backToGames.addEventListener('click', () => {
-      window.location.href = 'games.html'; // Update with actual games page URL
+      window.location.href = 'index.html'; // Update with actual games page URL
     });
 
     // Initialize Game
@@ -597,6 +597,10 @@
       existingTargets.forEach(target => target.remove());
       activeTargets = 0;
     }
+
+    // Initialize game with selected theme
+    const selectedTheme = localStorage.getItem('selectedTheme') || 'circus'; // default theme
+    console.log(selectedTheme)
   </script>
 </body>
 </html>

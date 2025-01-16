@@ -63,27 +63,13 @@ function showGameSelection() {
 }
 
 function startGame(gameId, theme) {
-	const gameArea = document.getElementById('js-gameArea');
-	const themeSelection = document.querySelector('.c-theme-selection');
-	const gameContainer = document.getElementById('js-gameContainer');
-	const selectedGameTitle = document.getElementById('js-selectedGameTitle');
+	// Store the selected theme in localStorage so the game page can access it
+	localStorage.setItem('selectedTheme', theme);
 
-	// Hide theme selection
-	themeSelection.style.display = 'none';
-
-	// Show game area
-	gameArea.style.display = 'flex';
-
-	// Clear container
-	gameContainer.innerHTML = '';
-
-	// Update title and start game
-	selectedGameTitle.textContent =
-		gameId === 'targetShooter' ? 'Target Shooter' : 'Villain Attack';
-
+	// Redirect to the appropriate game page
 	if (gameId === 'targetShooter') {
-		initTargetShooter(theme);
+		window.location.href = 'ts.html';
 	} else if (gameId === 'villainAttack') {
-		initZombieVsHero(theme);
+		window.location.href = 'va.html';
 	}
 }
