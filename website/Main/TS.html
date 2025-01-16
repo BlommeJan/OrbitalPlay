@@ -317,10 +317,11 @@
     // === Image Configuration Variables ===
 
     // Paths to your images
-    const backgroundImage = 'images/background.png'; // Path to background image
-    const goodTargetImage = 'images/good-target.png'; // Path to good target image
-    const badTargetImage = 'images/bad-target.png'; // Path to bad target image
-    const cursorImage = 'images/cursor.png'; // Path to custom cursor image
+    const selectedTheme = localStorage.getItem('selectedTheme') || 'circus';
+    const backgroundImage = `assets/targetshooter/bg_${selectedTheme}.png`;
+    const goodTargetImage = `assets/targetshooter/gt_${selectedTheme}.png`;
+    const badTargetImage = `assets/targetshooter/bt_${selectedTheme}.png`;
+    const cursorImage = `assets/targetshooter/cursor_${selectedTheme}.png`;
 
     // Apply the background image to the game area
     const gameAreaElement = document.getElementById('game-area');
@@ -597,10 +598,6 @@
       existingTargets.forEach(target => target.remove());
       activeTargets = 0;
     }
-
-    // Initialize game with selected theme
-    const selectedTheme = localStorage.getItem('selectedTheme') || 'circus'; // default theme
-    console.log(selectedTheme)
   </script>
 </body>
 </html>

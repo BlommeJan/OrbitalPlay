@@ -296,10 +296,15 @@
 
   <script>
     // ========== Image Paths ==========
-    const backgroundImage = 'images/backgroundV.png';  // REPLACE with your path
-    const heroImage       = 'images/heroV.png';
-    const zombieImage     = 'images/zombieV.png';
-    const bulletImage     = 'images/bulletV.png';
+    const selectedTheme = localStorage.getItem('selectedTheme') || 'candy';
+    const bgImg = new Image();
+    const heroImg = new Image();
+    const zombieImg = new Image();
+    const bulletImg = new Image();
+    bgImg.src = `assets/villainattack/bg_${selectedTheme}.png`;
+    heroImg.src = `assets/villainattack/h_${selectedTheme}.png`;
+    zombieImg.src = `assets/villainattack/z_${selectedTheme}.png`;
+    bulletImg.src = `assets/villainattack/p_${selectedTheme}.png`;
 
     // DOM References
     const startBtn       = document.getElementById('start-btn');
@@ -344,23 +349,12 @@
     // Timestamps
     let lastTime = 0;
 
-    // Images
-    const bgImg     = new Image();
-    const heroImg   = new Image();
-    const zombieImg = new Image();
-    const bulletImg = new Image();
-
     window.onload = function() {
       // Setup canvas
       zvhCanvas = document.getElementById('zvh-canvas');
       zvhCtx    = zvhCanvas.getContext('2d');
       resizeCanvas();
 
-      // Load images
-      bgImg.src     = backgroundImage;
-      heroImg.src   = heroImage;
-      zombieImg.src = zombieImage;
-      bulletImg.src = bulletImage;
 
       // Event Listeners
       window.addEventListener('resize', resizeCanvas);
@@ -612,10 +606,7 @@
     }
 
     function returnToMainMenu() {
-      // Here you can define what "main menu" means
-      isPlaying = false;
-      document.querySelector('.game-container').innerHTML =
-        '<h2 style="text-align:center;">Returned to Main Menu</h2>';
+      window.location.href = 'index.html';
     }
 
     // ========== Spawn Functions ==========
@@ -734,9 +725,6 @@
       const list = scores.map(s => `<li>${s}</li>`).join('');
       document.getElementById('high-score-list').innerHTML = list;
     }
-
-    const selectedTheme = localStorage.getItem('selectedTheme') || 'circus'; // default theme
-    console.log(selectedTheme)
   </script>
 </body>
 </html>
