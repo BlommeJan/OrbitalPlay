@@ -1067,3 +1067,60 @@ cursor: pointer in games
   line-height: 1.6;
   margin-bottom: var(--space-xl);
 }
+
+/* Video Overlay */
+.c-video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.c-video-overlay__content {
+  background-color: var(--color-background);
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  max-width: 90%;
+  box-shadow: var(--shadow-lg);
+}
+
+.c-video-overlay__video {
+  width: 100%;
+  max-width: 400px;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-m);
+}
+.c-video-overlay__video2 {
+  height: 100%;
+  max-height: 400px;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-m);
+}
+
+.c-video-overlay__title {
+  color: var(--color-text);
+  font-size: 2.4rem;
+  margin-bottom: var(--space-l);
+}
+
+.c-video-overlay__button {
+  background-color: var(--color-accent1);
+  color: white;
+  border: none;
+  padding: var(--space-m) var(--space-xl);
+  font-size: 1.8rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.c-video-overlay__button:hover {
+  background-color: var(--color-accent2);
+}

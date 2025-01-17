@@ -3,6 +3,21 @@
  * Central logic
  */
 
+// Check if we've shown the video before
+function showVideoOverlay() {
+	if (!localStorage.getItem('hasSeenVideo')) {
+		document.getElementById('js-videoOverlay').style.display = 'flex';
+	}
+}
+
+function closeVideoOverlay() {
+	document.getElementById('js-videoOverlay').style.display = 'none';
+	localStorage.setItem('hasSeenVideo', 'true');
+}
+
+// Show video overlay when page loads
+window.addEventListener('load', showVideoOverlay);
+
 let currentGame = null;
 
 const gameDialog = document.getElementById('js-gameDialog');
