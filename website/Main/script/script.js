@@ -83,8 +83,8 @@ function startGame(gameId, theme) {
 
 	// Redirect to the appropriate game page
 	if (gameId === 'targetShooter') {
-		window.location.href = 'ts.html';
+		window.location.href = 'target-shooter.html';
 	} else if (gameId === 'villainAttack') {
-		window.location.href = 'va.html';
+		window.location.href = 'villain-attack.html';
 	}
 }
