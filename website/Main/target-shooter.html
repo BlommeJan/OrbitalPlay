@@ -22,19 +22,15 @@
      *   40px  = 2.5rem
      *   100px = 6.25rem
      */
+     
 
     :root {
-      /* Colors */
-      --color-bg-gradient: linear-gradient(135deg, #f0f0f0 0%, #e6ebf0 100%);
-      --color-white: #fff;
-      --color-light-gray: #fafafa;
-      --color-mid-gray: #ddd;
-      --color-dark-gray: #333;
-      --color-medium-dark-gray: #555;
-      --color-mid-border: #ccc;
-      --color-primary: #3f51b5;
-      --color-primary-hover: #303f9f;
-      --color-overlay-dark: rgba(0, 0, 0, 0.7);
+      /* Colors - matching your site */
+      --color-background: #ffffff;
+      --color-background2: #f6f6f6;
+      --color-text: #000000;
+      --color-accent1: #12A6B7;
+      --color-accent2: #D9D9D9;
 
       /* Shadows */
       --shadow-subtle: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.1);       /* 0 4px 10px */
@@ -69,7 +65,7 @@
 
     body {
       font-family: var(--font-family-base);
-      background: var(--color-bg-gradient);
+      background: var(--color-background);
       margin: 0;
       padding: 0;
       overflow: hidden; /* Prevent scrollbar when targets move */
@@ -79,13 +75,14 @@
       width: 100%;
       height: 100vh; /* Full viewport height */
       padding: var(--spacing-sm);
-      background-color: var(--color-white);
+      background-color: var(--color-background);
       border-radius: var(--radius-sm);
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
       position: relative;
-      box-shadow: var(--shadow-subtle); /* Subtle drop shadow */
+      box-shadow: 0 0.25rem 0.625rem rgba(0,0,0,0.1);
+      padding: 0;
     }
 
     .main-content {
@@ -94,6 +91,17 @@
       padding: var(--spacing-sm);
       box-sizing: border-box;
       gap: var(--spacing-sm);
+      background-color: var(--color-background);
+      background-image: 
+        linear-gradient(135deg, transparent 0%, transparent 49%, 
+          var(--color-accent2) 49%, var(--color-accent2) 51%, 
+          transparent 51%, transparent 100%),
+        linear-gradient(45deg, transparent 0%, transparent 49%, 
+          var(--color-accent2) 49%, var(--color-accent2) 51%, 
+          transparent 51%, transparent 100%);
+      background-size: 40px 40px;
+      background-position: 0 0;
+      padding: 45px;
     }
 
     /*
@@ -104,8 +112,8 @@
 
     .high-scores-container {
       flex: 1;
-      background-color: var(--color-light-gray);
-      border: var(--border-width-sm) solid var(--color-mid-gray);
+      background-color: var(--color-background2);
+      border: 2px solid var(--color-accent2);
       border-radius: var(--radius-sm);
       padding: 0.625rem; /* 10px => var(--spacing-xs) if you prefer consistent usage */
       box-sizing: border-box;
@@ -116,7 +124,7 @@
     .high-scores-container h2 {
       margin-top: 0;
       text-align: center;
-      color: var(--color-dark-gray);
+      color: var(--color-accent1);
     }
 
     #high-score-list {
@@ -124,7 +132,7 @@
       padding: 0;
       margin: 0;
       font-size: 1.1em;
-      color: var(--color-medium-dark-gray);
+      color: var(--color-text);
     }
 
     /*
@@ -137,13 +145,13 @@
       flex: 5;
       position: relative;
       background-color: #e0e0e0;
-      border: var(--border-width-sm) solid var(--color-mid-border);
+      border: var(--border-width-sm) solid var(--color-accent2);
       border-radius: var(--radius-sm);
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: url('images/cursor.png') 1rem 1rem, auto; /* 16px offset => 1rem */
+      cursor: url('assets/targetshooter/cursor_cowboy.png') 1rem 1rem, auto; /* 16px offset => 1rem */
       box-shadow: var(--shadow-inset-light);
     }
 
@@ -155,20 +163,17 @@
       position: absolute;
       display: block;
       z-index: 1001;
-      background-color: var(--color-primary);
-      color: var(--color-white);
+      background-color: var(--color-accent1);
+      color: white;
       border: none;
       border-radius: var(--radius-md);
-      transition: background-color var(--transition-duration),
-                  transform var(--transition-duration),
-                  box-shadow var(--transition-duration);
+      transition: all 0.3s ease;
       box-shadow: var(--shadow-medium);
     }
 
     #start-btn:hover {
-      background-color: var(--color-primary-hover);
-      transform: scale(1.05);
-      box-shadow: var(--shadow-hover);
+      background-color: #0f8b99;
+      transform: translateY(-2px);
     }
 
     /* Start Countdown Overlay */
@@ -178,8 +183,8 @@
       left: 50%;
       transform: translate(-50%, -50%);
       font-size: var(--font-size-huge);
-      color: var(--color-white);
-      background-color: var(--color-overlay-dark);
+      color: var(--color-text);
+      background-color: rgba(0, 0, 0, 0.7);
       padding: var(--spacing-sm) var(--spacing-md);
       border-radius: var(--radius-md);
       display: none;
@@ -222,8 +227,8 @@
 
     .score-time-container {
       flex: 1;
-      background-color: var(--color-light-gray);
-      border: var(--border-width-sm) solid var(--color-mid-gray);
+      background-color: var(--color-background2);
+      border: var(--border-width-sm) solid var(--color-accent2);
       border-radius: var(--radius-sm);
       padding: var(--spacing-sm);
       box-sizing: border-box;
@@ -236,20 +241,25 @@
 
     .score-time-container div {
       font-size: 1.5em;
-      color: var(--color-dark-gray);
+      color: var(--color-text);
     }
 
     .score-time-container hr {
       width: 80%;
-      border: 0.0625rem solid var(--color-mid-border); /* 1px => 0.0625rem */
+      border: 0.0625rem solid var(--color-accent2); /* 1px => 0.0625rem */
     }
 
     .back-to-games {
       margin-top: 0.625rem; /* 10px => var(--spacing-xs) if desired */
       font-size: 1.2em;
-      color: var(--color-primary);
+      color: var(--color-accent1);
       text-decoration: underline;
       cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .back-to-games:hover {
+      color: #0f8b99;
     }
 
     /*
@@ -264,15 +274,50 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: var(--color-overlay-dark);
-      color: var(--color-white);
+      background-color: rgba(0, 0, 0, 0.85);
+      color: var(--color-text);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 3em;
       z-index: 1003;
       cursor: inherit;
       display: none; /* Hidden by default */
+    }
+
+    .pause-menu-content {
+      text-align: center;
+      background-color: var(--color-background);
+      padding: var(--space-xl);
+      border-radius: var(--border-radius);
+      width: 300px;
+    }
+
+    .pause-menu-content h3 {
+      color: var(--color-text);
+      font-size: 2.4rem;
+      font-weight: 700;
+      margin-bottom: var(--space-l);
+      text-transform: uppercase;
+    }
+
+    .pause-menu-content button {
+      width: 200px;
+      display: block;
+      margin: var(--space-s) auto;
+      background-color: var(--color-accent1);
+      color: white;
+      border: none;
+      border-radius: var(--border-radius);
+      padding: var(--space-s) var(--space-l);
+      font-size: 1.6rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .pause-menu-content button:hover {
+      background-color: #0f8b99;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
   </style>
 </head>
@@ -297,7 +342,13 @@
         <div id="game-area"></div>
 
         <!-- Pause Menu -->
-        <div id="pause-menu">Paused</div>
+        <div id="pause-menu">
+          <div class="pause-menu-content">
+            <h3>PAUSED</h3>
+            <button id="resume-btn">RESUME</button>
+            <button id="menu-btn">MAIN MENU</button>
+          </div>
+        </div>
       </div>
 
       <!-- Right Column: Score and Time -->
@@ -305,7 +356,7 @@
         <div>Score: <span id="score">0</span></div>
         <div>Time: <span id="time">30</span>s</div>
         <hr>
-        <div class="back-to-games">Back to games</div>
+        <div class="back-to-games">← Terug naar spelletjes</div>
       </div>
     </div>
   </div>
@@ -338,6 +389,8 @@
     const timeEl = document.getElementById('time');
     const highScoreList = document.getElementById('high-score-list');
     const pauseMenu = document.getElementById('pause-menu');
+    const resumeBtn = document.getElementById('resume-btn');
+    const menuBtn = document.getElementById('menu-btn');
     const backToGames = document.querySelector('.back-to-games');
 
     let score = 0;
@@ -361,6 +414,10 @@
     backToGames.addEventListener('click', () => {
       window.location.href = 'index.html'; // Update with actual games page URL
     });
+
+    // Add event listeners for pause menu buttons
+    resumeBtn.addEventListener('click', resumeGame);
+    menuBtn.addEventListener('click', returnToMainMenu);
 
     // Initialize Game
     function initializeGame() {
@@ -572,12 +629,18 @@
     }
 
     function resumeGame() {
+      if (!isPaused) return;
+      isPaused = false;
       pauseMenu.style.display = 'none';
       gameInterval = setInterval(updateTimer, 1000);
       // Resume spawning targets only if there are no active targets
       if (activeTargets < 1 && time > 0) {
         spawnTarget();
       }
+    }
+
+    function returnToMainMenu() {
+      window.location.href = 'index.html';
     }
 
     // Clear all timeouts for bad targets
