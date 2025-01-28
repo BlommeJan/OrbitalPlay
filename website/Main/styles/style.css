@@ -1085,29 +1085,38 @@ cursor: pointer in games
 .c-video-overlay__content {
   background-color: var(--color-background);
   padding: var(--space-xl);
-  border-radius: var(--radius-lg);
+  border-radius: 24px;
   text-align: center;
   max-width: 90%;
   box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-l);
+}
+
+.c-video-overlay__videos {
+  display: flex;
+  gap: var(--space-xl);
+  align-items: center;
+  justify-content: center;
 }
 
 .c-video-overlay__video {
   width: 100%;
-  max-width: 400px;
-  border-radius: var(--radius-md);
-  margin-bottom: var(--space-m);
+  max-width: 550px;
+  border-radius: 12px;
 }
+
 .c-video-overlay__video2 {
-  height: 100%;
-  max-height: 400px;
-  border-radius: var(--radius-md);
-  margin-bottom: var(--space-m);
+  width: 100%;
+  max-width: 200px;
+  border-radius: 12px;
 }
 
 .c-video-overlay__title {
   color: var(--color-text);
   font-size: 2.4rem;
-  margin-bottom: var(--space-l);
 }
 
 .c-video-overlay__button {
@@ -1116,9 +1125,10 @@ cursor: pointer in games
   border: none;
   padding: var(--space-m) var(--space-xl);
   font-size: 1.8rem;
-  border-radius: var(--radius-md);
+  border-radius: 12px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-top: var(--space-m);
 }
 
 .c-video-overlay__button:hover {
