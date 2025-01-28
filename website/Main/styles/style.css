@@ -1134,3 +1134,72 @@ cursor: pointer in games
 .c-video-overlay__button:hover {
   background-color: var(--color-accent2);
 }
+
+    /* Site theme background pattern */
+    body {
+      background-color: var(--color-background);
+      background-image: 
+        linear-gradient(135deg, transparent 0%, transparent 49%, 
+          var(--color-accent2) 49%, var(--color-accent2) 51%, 
+          transparent 51%, transparent 100%),
+        linear-gradient(45deg, transparent 0%, transparent 49%, 
+          var(--color-accent2) 49%, var(--color-accent2) 51%, 
+          transparent 51%, transparent 100%);
+      background-size: 40px 40px;
+      background-position: 0 0;
+      position: relative;
+    }
+
+    /* Ensure content stays above pattern */
+    .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Hardware DIY content */
+    .c-hardware-info__content {
+      background-color: var(--color-background);
+      border-radius: 24px;
+      padding: var(--space-xl);
+      box-shadow: 0 1rem 2rem rgba(0,0,0,0.05);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .c-hardware-info__title {
+      font-size: 3.2rem;
+      margin-bottom: var(--space-l);
+      color: var(--color-accent1);
+    }
+
+    .c-hardware-info__text {
+      font-size: 1.8rem;
+      line-height: 1.6;
+      margin-bottom: var(--space-xl);
+    }
+
+    /* About info content */
+    .c-about-info__content {
+      background-color: var(--color-background);
+      border-radius: 24px;
+      padding: var(--space-xl);
+      box-shadow: 0 1rem 2rem rgba(0,0,0,0.05);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .c-about-info__title {
+      font-size: 3.2rem;
+      margin-bottom: var(--space-l);
+      color: var(--color-accent1);
+    }
+
+    .c-about-info__text {
+      font-size: 1.8rem;
+      line-height: 1.6;
+      margin-bottom: var(--space-xl);
+    }
