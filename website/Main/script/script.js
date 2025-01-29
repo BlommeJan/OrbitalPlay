@@ -3,6 +3,36 @@
  * Central logic
  */
 
+// Global variables
+let cursorTimer;
+const CURSOR_TIMEOUT = 30000; // 30 seconds in milliseconds
+let isOverlayShown = false;
+
+// Function to handle cursor movement
+function resetCursorTimer() {
+	clearTimeout(cursorTimer);
+	if (!isOverlayShown) {
+		cursorTimer = setTimeout(() => {
+			const videoOverlay = document.getElementById('js-videoOverlay');
+			if (videoOverlay && !isOverlayShown) {
+				videoOverlay.style.display = 'flex';
+				isOverlayShown = true;
+			} else if (!isOverlayShown) {
+				window.location.href = 'index.html';
+			}
+		}, CURSOR_TIMEOUT);
+	}
+}
+
+
+// Add event listeners for cursor movement
+document.addEventListener('mousemove', resetCursorTimer);
+document.addEventListener('keypress', resetCursorTimer);
+document.addEventListener('click', resetCursorTimer);
+
+// Start the timer when page loads
+resetCursorTimer();
+
 // Check if we've shown the video before
 function showVideoOverlay() {
 	if (!localStorage.getItem('hasSeenVideo')) {
@@ -11,7 +41,10 @@ function showVideoOverlay() {
 }
 
 function closeVideoOverlay() {
-	document.getElementById('js-videoOverlay').style.display = 'none';
+	const videoOverlay = document.getElementById('js-videoOverlay');
+	videoOverlay.style.display = 'none';
+	isOverlayShown = false;
+	resetCursorTimer();
 	localStorage.setItem('hasSeenVideo', 'true');
 }
 
